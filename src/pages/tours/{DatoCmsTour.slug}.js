@@ -46,15 +46,18 @@ export default function Tour({ data: { tour } }) {
         <h1>{tour.title}</h1>
         <OrderButton activity={tour} />
       </TourHeader>
-      <TourGallery>
-        {tour.tourGallery &&
-          tour.tourGallery.map((e) => (
+
+      {tour.tourGallery && (
+        <TourGallery>
+          {tour.tourGallery.map((e) => (
             <GatsbyImage
               style={{ objectFit: "cover" }}
               image={e.gatsbyImageData}
             />
           ))}
-      </TourGallery>
+        </TourGallery>
+      )}
+      <TourGallery></TourGallery>
 
       <p>{tour.description}</p>
       <ActivityAttributes tourAttributes={tour.tourAttributes} />
