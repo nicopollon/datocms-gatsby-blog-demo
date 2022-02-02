@@ -2,15 +2,22 @@ require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Blog Demo",
+    title: "Travel Agency",
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     "gatsby-plugin-postcss",
     {
       resolve: "gatsby-source-datocms",
       options: {
         apiToken: process.env.DATO_API_TOKEN,
-        environment: process.env.DATO_ENVIRONMENT,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-snipcart",
+      options: {
+        apiKey: process.env.SNIPCART_API_TOKEN,
+        autopop: true,
       },
     },
     "gatsby-plugin-sharp",
