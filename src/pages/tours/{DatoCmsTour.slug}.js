@@ -8,34 +8,27 @@ import ActivityAttributes from "../../components/activityAttributes";
 import ActivityExperience from "../../components/activityExperience";
 import OrderButton from "../../components/OrderButton";
 import { GatsbyImage } from "gatsby-plugin-image";
-
+import TourGallery from "../../components/activityGallery";
+import OrderContainer from "../../components/OrderContainer";
 const TourHeader = styled.div`
   h1 {
     font-size: 2.5rem;
     font-weight: 700;
+    margin-bottom: 16px;
+    margin-top: -20px;
   }
 `;
-
-const TourGallery = styled.div`
-  display: grid;
-  grid-gap: 8px;
-  grid-template-columns: repeat(4, 1fr);
-  & ${TourGallery} > :nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  & ${TourGallery} > :nth-child(2) {
-    grid-column: span 2;
-
-    grid-row: span 1;
-  }
-  & ${TourGallery} > :nth-child(3) {
-    grid-column: span 1;
-  }
-  & ${TourGallery} > :nth-child(n + 5) {
-    display: none;
-  }
+const Description = styled.p`
+  font-size: 16px;
+  padding: 16px 0;
+`;
+const ActivityContainer = styled.section`
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+`;
+const ActivityContent = styled.div`
+  flex: 3;
 `;
 export default function Tour({ data: { tour } }) {
   return (
@@ -44,7 +37,6 @@ export default function Tour({ data: { tour } }) {
       <TourHeader>
         <ActivityType tourTypes={tour.tourTypes} />
         <h1>{tour.title}</h1>
-        <OrderButton activity={tour} />
       </TourHeader>
 
       {tour.tourGallery && (
@@ -58,10 +50,14 @@ export default function Tour({ data: { tour } }) {
         </TourGallery>
       )}
       <TourGallery></TourGallery>
-
-      <p>{tour.description}</p>
-      <ActivityAttributes tourAttributes={tour.tourAttributes} />
-      <ActivityExperience description={tour.description} />
+      <ActivityContainer>
+        <ActivityContent>
+          <Description>{tour.description}</Description>
+          <ActivityAttributes tourAttributes={tour.tourAttributes} />
+          <ActivityExperience description={tour.description} />
+        </ActivityContent>{" "}
+        <OrderContainer tour={tour} />
+      </ActivityContainer>
     </Container>
   );
 }
