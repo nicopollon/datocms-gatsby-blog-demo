@@ -77,7 +77,7 @@ export const query = graphql`
         gatsbyImageData(layout: CONSTRAINED)
       }
       tourGallery {
-        gatsbyImageData(layout: CONSTRAINED, height: 200)
+        gatsbyImageData(layout: CONSTRAINED, height: 250, aspectRatio: 2)
       }
     }
   }

@@ -38,7 +38,6 @@ const ActivityExperience = ({ description }) => {
           <li>asd</li>
         </Highlights>
       </ExperienceSection>
-
       <ExperienceSection>
         <ExperienceTitle>
           {" "}
