@@ -43,6 +43,7 @@ export default function Tour({ data: { tour } }) {
         <TourGallery>
           {tour.tourGallery.map((e) => (
             <GatsbyImage
+              id={e}
               style={{ objectFit: "cover" }}
               image={e.gatsbyImageData}
             />
@@ -76,7 +77,7 @@ export const query = graphql`
         gatsbyImageData(layout: CONSTRAINED)
       }
       tourGallery {
-        gatsbyImageData(layout: CONSTRAINED, height: 400)
+        gatsbyImageData(layout: CONSTRAINED, height: 200)
       }
     }
   }
