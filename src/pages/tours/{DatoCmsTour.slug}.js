@@ -49,7 +49,6 @@ export default function Tour({ data: { tour } }) {
           ))}
         </TourGallery>
       )}
-      <TourGallery></TourGallery>
       <ActivityContainer>
         <ActivityContent>
           <Description>{tour.description}</Description>
@@ -72,6 +71,7 @@ export const query = graphql`
       description
       duration
       price
+      childPrice
       coverImage {
         gatsbyImageData(layout: CONSTRAINED)
       }

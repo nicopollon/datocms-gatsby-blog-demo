@@ -60,20 +60,20 @@ const OrderContainer = ({ tour }) => {
   const [adults, setAdults] = useState(1);
   const [Partecipants, setPartecipants] = useState(["Adult x" + adults], [""]);
   const [visible, setVisible] = useState(false);
-  const [price, setPrice] = useState(20);
+  const [price, setPrice] = useState(tour.price);
   const [children, setChildren] = useState(0);
 
   const incrementCounter = (person, setPersons, personType) => {
     setPersons(person + 1);
 
     if (personType === "Adults") {
-      setPrice(price + 20);
+      setPrice(price + tour.price);
       let PartecipantsCopy = [...Partecipants];
       PartecipantsCopy[0] = "Adult x " + (person + 1);
       setPartecipants(PartecipantsCopy);
     }
     if (personType === "Children") {
-      setPrice(price + 10);
+      setPrice(price + tour.childPrice);
       let PartecipantsCopy = [...Partecipants];
 
       PartecipantsCopy[1] = " Child x " + (person + 1);
@@ -84,13 +84,13 @@ const OrderContainer = ({ tour }) => {
   const decreaseCounter = (person, setPersons, personType) => {
     setPersons(person - 1);
     if (personType === "Adults") {
-      setPrice(price - 20);
+      setPrice(price - tour.price);
       let PartecipantsCopy = [...Partecipants];
       PartecipantsCopy[0] = "Adult x " + (person - 1);
       setPartecipants(PartecipantsCopy);
     }
     if (personType === "Children") {
-      setPrice(price + 20);
+      setPrice(price + tour.childPrice);
       let PartecipantsCopy = [...Partecipants];
       PartecipantsCopy[1] = " Child x " + (person - 1);
       setPartecipants(PartecipantsCopy);
