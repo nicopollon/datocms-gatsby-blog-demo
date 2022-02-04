@@ -6,19 +6,15 @@ const CartWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  span {
-    margin-left: 5px;
-  }
+  padding-left: 24px;
 `;
 
 const CartIcon = () => {
   return (
     <CartWrapper>
       <button className="snipcart-checkout">
-        <AiOutlineShoppingCart size={35}></AiOutlineShoppingCart>
+        <AiOutlineShoppingCart size={35}></AiOutlineShoppingCart>{" "}
       </button>
-      <span>Cart</span>
-      <p className="snipcart-items-count"></p>
     </CartWrapper>
   );
 };

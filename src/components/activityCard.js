@@ -50,10 +50,15 @@ export const Cover = styled.div`
   display: block;
   position: relative;
 `;
-const ActivityCarousel = ({ activities }) => {
+export const ActivityCarouselTitle = styled.div`
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 16px;
+`;
+const ActivityCarousel = ({ activities, title }) => {
   return (
     <>
-      <h1>Top Activities</h1>
+      <ActivityCarouselTitle>{title}</ActivityCarouselTitle>
       <ActivityCardWrapper>
         {activities.nodes.map((e) => (
           <ActivityCardContainer key={e.id} id={e.id}>
@@ -62,6 +67,7 @@ const ActivityCarousel = ({ activities }) => {
                 <GatsbyImage
                   imgStyle={{ objectFit: "cover" }}
                   image={e.coverImage.gatsbyImageData}
+                  alt=""
                 />
 
                 <ActivityType tourTypes={e.tourTypes} />

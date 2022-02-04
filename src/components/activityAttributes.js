@@ -22,7 +22,6 @@ const ActivityAttributes = ({ tourAttributes }) => {
   const tourAttributesList = tourAttributes && cleanedType.split(",");
 
   const getIcons = (tour) => {
-    console.log(tour);
     if (tour.includes("skip line")) {
       return <BsFillSkipEndFill size={30} />;
     } else if (tour.includes("audio guide")) {
@@ -48,7 +47,7 @@ const ActivityAttributes = ({ tourAttributes }) => {
       <AttributeList>
         {tourAttributes &&
           tourAttributesList.map((e) => (
-            <TourAttribute>
+            <TourAttribute key={e}>
               {" "}
               {getIcons(e)} {<Attribute>{e}</Attribute>}
             </TourAttribute>

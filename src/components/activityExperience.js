@@ -1,4 +1,5 @@
 import React from "react";
+import { StructuredText } from "react-datocms";
 import styled from "styled-components";
 
 const Experience = styled.div`
@@ -25,7 +26,7 @@ const ExperienceTitle = styled.div`
 const Highlights = styled.ul`
   list-style: inside;
 `;
-const ActivityExperience = ({ description }) => {
+const ActivityExperience = ({ description, inclusions }) => {
   return (
     <Experience>
       <ExperienceSection>
@@ -47,7 +48,15 @@ const ActivityExperience = ({ description }) => {
           <p>{description}</p>
         </Highlights>
       </ExperienceSection>
-
+      <ExperienceSection>
+        <ExperienceTitle>
+          {" "}
+          <h2>What's included</h2>
+        </ExperienceTitle>
+        <Highlights>
+          <StructuredText data={inclusions} />
+        </Highlights>
+      </ExperienceSection>
       <ExperienceSection>
         <ExperienceTitle>
           {" "}

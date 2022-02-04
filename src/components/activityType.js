@@ -27,7 +27,6 @@ const ActivityType = ({ tourTypes }) => {
   const tourTypesList = tourTypes && cleanedType.split(",");
 
   const getColor = (tour) => {
-    console.log(tour);
     if (tour.includes("boat")) {
       return "#0066ff";
     } else if (tour.includes("guide")) {
@@ -40,7 +39,9 @@ const ActivityType = ({ tourTypes }) => {
   return (
     <ActivityCardTypes>
       {tourTypesList.map((e) => (
-        <ActivityCardType typeColor={() => getColor(e)}>{e}</ActivityCardType>
+        <ActivityCardType key={e} typeColor={() => getColor(e)}>
+          {e}
+        </ActivityCardType>
       ))}
     </ActivityCardTypes>
   );

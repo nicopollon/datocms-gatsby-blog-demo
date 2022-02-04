@@ -1,15 +1,15 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Intro from "../../components/intro";
-import Container from "../../components/container";
+import Intro from "../../../components/intro";
+import Container from "../../../components/container";
 import styled from "styled-components";
-import ActivityType from "../../components/activityType";
-import ActivityAttributes from "../../components/activityAttributes";
-import ActivityExperience from "../../components/activityExperience";
-import OrderButton from "../../components/OrderButton";
+import ActivityType from "../../../components/activityType";
+import ActivityAttributes from "../../../components/activityAttributes";
+import ActivityExperience from "../../../components/activityExperience";
+import OrderButton from "../../../components/OrderButton";
 import { GatsbyImage } from "gatsby-plugin-image";
-import TourGallery from "../../components/activityGallery";
-import OrderContainer from "../../components/OrderContainer";
+import TourGallery from "../../../components/activityGallery";
+import OrderContainer from "../../../components/OrderContainer";
 const TourHeader = styled.div`
   h1 {
     font-size: 2.5rem;
@@ -67,7 +67,7 @@ export default function Tour({ data: { tour } }) {
 }
 
 export const query = graphql`
-  query TourBySlug($id: String) {
+  query myQuery($id: String) {
     tour: datoCmsTour(id: { eq: $id }) {
       id
       title
