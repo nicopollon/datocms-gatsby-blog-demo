@@ -51,6 +51,9 @@ export const MobileOrderWrapper = styled.div`
   height: 80px;
   background-color: #fff;
   border-top: 1px solid #dcdfe4;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 export const PriceTag = styled.div`
   font-size: 24px;
