@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const BookBtn = styled.button`
-  border-radius: 500px;
+  border-radius: 24px;
   padding: 9px 24px;
   background-color: #0066ff;
   color: #fff;
@@ -13,6 +13,9 @@ const BookBtn = styled.button`
     opacity: 0.75;
   }
   transition: all 0.4s ease-in;
+  @media screen and (max-width: 768px) {
+    flex-basis: fit-content;
+  }
 `;
 
 export default function OrderButton({ tour, quantity, partecipants, price }) {

@@ -7,6 +7,10 @@ import ActivityType from "./activityType";
 import { BsClockHistory } from "react-icons/bs";
 export const ActivityCardWrapper = styled.div`
   display: flex;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const ActivityCardContainer = styled.div`
   background: #fff;
@@ -53,7 +57,10 @@ export const Cover = styled.div`
 export const ActivityCarouselTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 500;
-  margin: 0 16px;
+  margin: 0;
+  @media screen and (min-width: 768px) {
+    padding-left: 16px;
+  }
 `;
 const ActivityCarousel = ({ activities, title }) => {
   return (
@@ -62,7 +69,7 @@ const ActivityCarousel = ({ activities, title }) => {
       <ActivityCardWrapper>
         {activities.nodes.map((e) => (
           <ActivityCardContainer key={e.id} id={e.id}>
-            <Link to={`/tours/${e.slug}`}>
+            <Link to={`/tours/${e.categoryLink.slug}/${e.slug}`}>
               <Cover>
                 <GatsbyImage
                   imgStyle={{ objectFit: "cover" }}

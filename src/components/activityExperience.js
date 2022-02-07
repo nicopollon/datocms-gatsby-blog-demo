@@ -9,9 +9,12 @@ const Experience = styled.div`
 `;
 const ExperienceSection = styled.div`
   display: flex;
-  border-bottom: 1px solid #dcdfe4;
+  border-bottom:${({ noBorder }) => (noBorder ? "none" : "1px solid #dcdfe4;")} 
   padding-bottom: 24px;
   margin-bottom: 24px;
+  @media screen and (max-width:768px){
+    flex-direction:column;
+  }
 `;
 const ExperienceTitle = styled.div`
   flex-basis: 25%;
@@ -20,6 +23,12 @@ const ExperienceTitle = styled.div`
   h2 {
     font-size: 1rem;
     font-weight: 500;
+  }
+  @media screen and (max-width: 768px) {
+    flex-basis: 100%;
+    max-width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
   }
 `;
 
@@ -67,7 +76,7 @@ const ActivityExperience = ({ description, inclusions }) => {
         </Highlights>
       </ExperienceSection>
 
-      <ExperienceSection>
+      <ExperienceSection noBorder>
         <ExperienceTitle>
           {" "}
           <h2>Do not forget</h2>

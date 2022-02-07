@@ -3,7 +3,20 @@ import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby";
 import Cart from "./Cart";
-import { HeaderWrapper, HeaderContent, LinkContainer } from "../styles/Header";
+import { useState } from "react";
+import { FiMenu } from "react-icons/fi";
+import { AiOutlineClose } from "react-icons/ai";
+import {
+  HeaderWrapper,
+  HeaderContent,
+  LinkContainer,
+  MobileHeaderContent,
+  MobileMenu,
+  MobileSidebar,
+  MobileLinkContainer,
+  MobileActionContainer,
+} from "../styles/Header";
+import Container from "./container";
 
 /* export default function Intro() {
   return (
@@ -20,6 +33,8 @@ import { HeaderWrapper, HeaderContent, LinkContainer } from "../styles/Header";
 } */
 
 const Intro = () => {
+  const [openSidebar, setSidebar] = useState(false);
+
   return (
     <StaticQuery
       query={graphql`
@@ -49,6 +64,43 @@ const Intro = () => {
             </LinkContainer>
             <Cart />
           </HeaderContent>
+          <MobileHeaderContent>
+            <Link to="/">
+              <h1>Travel Agency.</h1>
+            </Link>{" "}
+            <MobileActionContainer>
+              <Cart />
+              <MobileMenu onClick={() => setSidebar(!openSidebar)}>
+                <FiMenu size={35} />
+              </MobileMenu>
+            </MobileActionContainer>
+          </MobileHeaderContent>
+          <MobileSidebar open={openSidebar}>
+            <Container>
+              <MobileHeaderContent>
+                <Link to="/">
+                  <h1>Travel Agency.</h1>
+                </Link>{" "}
+                <MobileActionContainer>
+                  <Cart />
+                  <MobileMenu onClick={() => setSidebar(!openSidebar)}>
+                    {openSidebar ? (
+                      <AiOutlineClose size={35} />
+                    ) : (
+                      <FiMenu size={35} />
+                    )}
+                  </MobileMenu>
+                </MobileActionContainer>
+              </MobileHeaderContent>
+              <MobileLinkContainer>
+                {data.allDatoCmsCategory.nodes.map((e, index) => (
+                  <Link key={index} to={`/tours/${e.slug}`}>
+                    {e.name}
+                  </Link>
+                ))}
+              </MobileLinkContainer>
+            </Container>
+          </MobileSidebar>
         </HeaderWrapper>
       )}
     ></StaticQuery>

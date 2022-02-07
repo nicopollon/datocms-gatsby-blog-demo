@@ -17,6 +17,9 @@ export const ActivityCardType = styled.li`
   margin: 0 3px;
   color: #fff;
   border-radius: 8px;
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const ActivityType = ({ tourTypes }) => {

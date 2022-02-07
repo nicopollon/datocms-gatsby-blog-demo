@@ -35,6 +35,10 @@ export const query = graphql`
     }
     allTours: allDatoCmsTour(limit: 4) {
       nodes {
+        categoryLink {
+          name
+          slug
+        }
         title
         slug
         price

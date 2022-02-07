@@ -9,7 +9,7 @@ import Container from "./container";
 const Category = ({ title, description, image }) => {
   return (
     <HeroCover>
-      <GatsbyImage image={image} style={{ gridArea: "1/1" }} />
+      <GatsbyImage image={image} alt="" style={{ gridArea: "1/1" }} />
       <HeroContentWrapper>
         <HeroContent>
           <Container>

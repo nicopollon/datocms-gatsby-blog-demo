@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const TourGallery = styled.div`
+export const TourGallery = styled.div`
   display: grid;
   grid-gap: 8px;
   grid-template-columns: repeat(4, 1fr);
@@ -21,6 +21,17 @@ const TourGallery = styled.div`
   & *:nth-child(n + 5) {
     display: none;
   }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
-export default TourGallery;
+export const MobileGallery = styled.div`
+  display: flex;
+  width: 100%;
+  height: 300px;
+  min-height: 250px;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;

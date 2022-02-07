@@ -8,61 +8,72 @@ import ActivityAttributes from "../../../components/activityAttributes";
 import ActivityExperience from "../../../components/activityExperience";
 import OrderButton from "../../../components/OrderButton";
 import { GatsbyImage } from "gatsby-plugin-image";
-import TourGallery from "../../../components/activityGallery";
+
+import {
+  TourGallery,
+  MobileGallery,
+} from "../../../components/activityGallery";
 import OrderContainer from "../../../components/OrderContainer";
-const TourHeader = styled.div`
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    margin-top: -20px;
-  }
-`;
-const Description = styled.p`
-  font-size: 16px;
-  padding: 16px 0;
-`;
-const ActivityContainer = styled.section`
-  display: flex;
-  width: 100%;
-  align-items: flex-start;
-`;
-const ActivityContent = styled.div`
-  flex: 3;
-`;
+import {
+  TourHeader,
+  Description,
+  ActivityContainer,
+  ActivityContent,
+} from "../../../styles/activityPage";
+import MobileOrder from "../../../components/MobileOrder";
 export default function Tour({ data: { tour } }) {
   return (
-    <Container>
-      <Intro />
-      <TourHeader>
-        <ActivityType tourTypes={tour.tourTypes} />
-        <h1>{tour.title}</h1>
-      </TourHeader>
+    <>
+      <Container>
+        <Intro />
+        <TourHeader>
+          <ActivityType tourTypes={tour.tourTypes} />
+          <h1>{tour.title}</h1>
+        </TourHeader>
 
+        {tour.tourGallery && (
+          <TourGallery>
+            {tour.tourGallery.map((e) => (
+              <GatsbyImage
+                key={e}
+                alt=""
+                style={{ objectFit: "cover" }}
+                image={e.gatsbyImageData}
+              />
+            ))}
+          </TourGallery>
+        )}
+      </Container>
       {tour.tourGallery && (
-        <TourGallery>
-          {tour.tourGallery.map((e) => (
-            <GatsbyImage
-              key={e}
-              alt=""
-              style={{ objectFit: "cover" }}
-              image={e.gatsbyImageData}
-            />
-          ))}
-        </TourGallery>
-      )}
-      <ActivityContainer>
-        <ActivityContent>
-          <Description>{tour.description}</Description>
-          <ActivityAttributes tourAttributes={tour.tourAttributes} />
-          <ActivityExperience
-            description={tour.description}
-            inclusions={tour.inclusions}
+        <MobileGallery>
+          <GatsbyImage
+            key={tour.tourGallery[0]}
+            alt=""
+            style={{ objectFit: "cover" }}
+            image={tour.tourGallery[0].gatsbyImageData}
           />
-        </ActivityContent>{" "}
-        <OrderContainer tour={tour} />
-      </ActivityContainer>
-    </Container>
+        </MobileGallery>
+      )}{" "}
+      <Container>
+        {" "}
+        <TourHeader forMobile>
+          <ActivityType tourTypes={tour.tourTypes} />
+          <h1>{tour.title}</h1>
+        </TourHeader>
+        <ActivityContainer>
+          <ActivityContent>
+            <Description>{tour.description}</Description>
+            <ActivityAttributes tourAttributes={tour.tourAttributes} />
+            <ActivityExperience
+              description={tour.description}
+              inclusions={tour.inclusions}
+            />
+          </ActivityContent>{" "}
+          <OrderContainer tour={tour} />
+        </ActivityContainer>
+        <MobileOrder tour={tour} />
+      </Container>
+    </>
   );
 }
 

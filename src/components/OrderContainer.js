@@ -16,6 +16,9 @@ const OrderWrapper = styled.div`
   position: sticky;
   top: 0;
   margin: 16px 0;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const PartecipantsWrapper = styled.div`

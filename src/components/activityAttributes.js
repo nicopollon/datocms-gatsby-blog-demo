@@ -37,6 +37,14 @@ const ActivityAttributes = ({ tourAttributes }) => {
       font-size: 32px;
       font-weight: 500;
     }
+    @media screen and (max-width: 768px) {
+      h3 {
+        font-size: 20px;
+        font-weight: 500;
+        text-align: center;
+        padding: 8px 0;
+      }
+    }
   `;
   const Attribute = styled.p`
     margin-left: 10px;
