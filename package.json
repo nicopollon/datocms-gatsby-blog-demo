@@ -28,6 +28,7 @@
     "gatsby-plugin-snipcart": "^1.1.2",
     "gatsby-plugin-styled-components": "^5.6.0",
     "gatsby-source-datocms": "^3.0.10",
+    "gatsby-source-filesystem": "^4.6.0",
     "gatsby-transformer-sharp": "^4.0.0",
     "postcss": "^8.3.6",
     "react": "^17.0.2",

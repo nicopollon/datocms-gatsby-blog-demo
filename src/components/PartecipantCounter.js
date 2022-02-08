@@ -30,7 +30,10 @@ const PartecipantCounter = ({
       <span style={{ width: "75%" }}> {personType} </span>
       <Counter>
         {" "}
-        <CounterButton disabled={persons < 2} onClick={decreaseCounter}>
+        <CounterButton
+          disabled={personType == "Children" ? persons < 1 : persons < 2}
+          onClick={decreaseCounter}
+        >
           <AiOutlineMinusCircle size={30} />
         </CounterButton>
         <input placeholder="1" size="1" maxLength={1} value={persons} />

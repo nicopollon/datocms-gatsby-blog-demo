@@ -4,20 +4,47 @@ import Intro from "../components/intro";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { graphql, Link } from "gatsby";
 import ActivityCarousel from "../components/activityCard";
+import { StaticImage } from "gatsby-plugin-image";
 
+import Footer from "../components/footer";
+import {
+  HeroContent,
+  HeroCover,
+  HeroContentWrapper,
+} from "../styles/CategoryIndex";
 export default function Index({
   data: { site, blog, allTours, vesuviusTours, capriTours },
 }) {
   return (
-    <Container>
-      <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
-      <Intro />
+    <>
+      <Container>
+        <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
+        <Intro />
+      </Container>
 
-      <ActivityCarousel activities={allTours} title={"Top Tours"} />
+      <HeroCover>
+        <StaticImage
+          alt=""
+          src="../images/vespa-street.jpg"
+          style={{ gridArea: "1/1", maxHeight: "400px" }}
+        />
+        <HeroContentWrapper>
+          <HeroContent>
+            <Container>
+              <h1>Explore beautiful Campania</h1>
+              <p>Pompeii,Positano and ...</p>
+            </Container>
+          </HeroContent>
+        </HeroContentWrapper>
+      </HeroCover>
+      <Container>
+        <ActivityCarousel activities={allTours} title={"Top Tours"} />
 
-      <ActivityCarousel activities={vesuviusTours} title={"Vesuvius Tours"} />
-      <ActivityCarousel activities={capriTours} title={"Capri Tours"} />
-    </Container>
+        <ActivityCarousel activities={vesuviusTours} title={"Vesuvius Tours"} />
+        <ActivityCarousel activities={capriTours} title={"Capri Tours"} />
+        <Footer />
+      </Container>
+    </>
   );
 }
 

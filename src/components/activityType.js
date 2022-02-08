@@ -4,9 +4,10 @@ import styled from "styled-components";
 export const ActivityCardTypes = styled.ul`
   list-style: none;
   position: relative;
-  top: -15px;
   display: flex;
   width: 100%;
+  flex-basis: fit-content;
+  top: ${({ inCarousel }) => (inCarousel ? "-15px" : "0")};
 `;
 export const ActivityCardType = styled.li`
   font-size: 16px;
@@ -19,10 +20,11 @@ export const ActivityCardType = styled.li`
   border-radius: 8px;
   @media screen and (max-width: 768px) {
     font-size: 12px;
+    margin: 0;
   }
 `;
 
-const ActivityType = ({ tourTypes }) => {
+const ActivityType = ({ tourTypes, inCarousel }) => {
   const [tourTypeColor, setTourTypeColor] = useState("#1593FF");
 
   const cleanedType =
@@ -40,7 +42,7 @@ const ActivityType = ({ tourTypes }) => {
   };
 
   return (
-    <ActivityCardTypes>
+    <ActivityCardTypes inCarousel={inCarousel}>
       {tourTypesList.map((e) => (
         <ActivityCardType key={e} typeColor={() => getColor(e)}>
           {e}

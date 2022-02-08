@@ -8,7 +8,7 @@ import ActivityAttributes from "../../../components/activityAttributes";
 import ActivityExperience from "../../../components/activityExperience";
 import OrderButton from "../../../components/OrderButton";
 import { GatsbyImage } from "gatsby-plugin-image";
-
+import Footer from "../../../components/footer";
 import {
   TourGallery,
   MobileGallery,
@@ -27,8 +27,8 @@ export default function Tour({ data: { tour } }) {
       <Container>
         <Intro />
         <TourHeader>
-          <ActivityType tourTypes={tour.tourTypes} />
           <h1>{tour.title}</h1>
+          <ActivityType tourTypes={tour.tourTypes} />
         </TourHeader>
 
         {tour.tourGallery && (
@@ -72,6 +72,7 @@ export default function Tour({ data: { tour } }) {
           <OrderContainer tour={tour} />
         </ActivityContainer>
         <MobileOrder tour={tour} />
+        <Footer />
       </Container>
     </>
   );

@@ -8,6 +8,13 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     "gatsby-plugin-postcss",
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
+    {
       resolve: "gatsby-source-datocms",
       options: {
         apiToken: process.env.DATO_API_TOKEN,

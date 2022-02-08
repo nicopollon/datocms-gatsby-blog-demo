@@ -77,7 +77,7 @@ const ActivityCarousel = ({ activities, title }) => {
                   alt=""
                 />
 
-                <ActivityType tourTypes={e.tourTypes} />
+                <ActivityType tourTypes={e.tourTypes} inCarousel />
               </Cover>
 
               <ActivityCardContent>

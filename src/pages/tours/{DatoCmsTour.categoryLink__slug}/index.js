@@ -5,6 +5,7 @@ import Container from "../../../components/container";
 import Intro from "../../../components/intro";
 import ActivityCarousel from "../../../components/activityCard";
 
+import Footer from "../../../components/footer";
 export default function Index({
   data: {
     category,
@@ -51,7 +52,9 @@ export default function Index({
         description={category.categoryLink.description}
         image={category.categoryLink.heroImage.gatsbyImageData}
       />
-      <Container>{getToursType(category.categoryLink.name)}</Container>
+      <Container>
+        {getToursType(category.categoryLink.name)} <Footer />{" "}
+      </Container>
     </>
   );
 }

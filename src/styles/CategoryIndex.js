@@ -27,7 +27,7 @@ export const HeroContent = styled.div`
   color: #fff;
   padding: 1.25rem;
   h1 {
-    font-size: 100px;
+    font-size: 72px;
     font-weight: 600;
   }
   p {

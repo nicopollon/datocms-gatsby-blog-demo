@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { FiMenu } from "react-icons/fi";
 export const HeaderWrapper = styled.section`
   height: 70px;
-  margin-bottom: 1.25rem;
 `;
 export const HeaderContent = styled.div`
   display: flex;
@@ -18,14 +17,13 @@ export const HeaderContent = styled.div`
 export const MobileHeaderContent = styled.div`
   display: flex;
   width: 100%;
-  height: 76px;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-  @media screen and (min-width: 768px) {
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  @media screen and (min-width: 769px) {
     display: none;
   }
 `;
@@ -75,6 +73,6 @@ export const MobileActionContainer = styled.div`
   flex-basis: fit-content;
   display: flex;
   * {
-    margin: 0 8px;
+    margin-left: 12px;
   }
 `;

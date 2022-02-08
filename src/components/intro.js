@@ -51,7 +51,7 @@ const Intro = () => {
         <HeaderWrapper>
           <HeaderContent>
             <Link to="/">
-              <h1 className="text-4xl md:text-4xl font-bold tracking-tighter leading-tight md:pr-8">
+              <h1 className="text-4xl md:text-4l font-bold tracking-tighter leading-tight md:pr-8">
                 Travel Agency.
               </h1>
             </Link>
@@ -78,7 +78,7 @@ const Intro = () => {
           <MobileSidebar open={openSidebar}>
             <Container>
               <MobileHeaderContent>
-                <Link to="/">
+                <Link to="/" onClick={() => setSidebar(!openSidebar)}>
                   <h1>Travel Agency.</h1>
                 </Link>{" "}
                 <MobileActionContainer>

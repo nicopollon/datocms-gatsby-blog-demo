@@ -3054,7 +3054,7 @@ cacheable-request@^6.0.0:
     normalize-url "^4.1.0"
     responselike "^1.0.2"
 
-cacheable-request@^7.0.1:
+cacheable-request@^7.0.1, cacheable-request@^7.0.2:
   version "7.0.2"
   resolved "https://registry.npmjs.org/cacheable-request/-/cacheable-request-7.0.2.tgz"
   integrity sha512-pouW8/FmiPQbuGpkXQ9BAPv/Mo5xDGANgSNXzTzJ8DrKGuXOssM4wIQRjfanNRh3Yu5cfYPvcorqbhg2KIJtew==
@@ -5581,6 +5581,23 @@ gatsby-core-utils@^3.0.0, gatsby-core-utils@^3.1.0:
     tmp "^0.2.1"
     xdg-basedir "^4.0.0"
 
+gatsby-core-utils@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-3.6.0.tgz#0e2f951e2c53731bdb459eb118eb3815a90a9393"
+  integrity sha512-xmjtOWQfLinNbgBiDRT1KpEfDZm0Z0u6+hsf8EH8Ps5UCIhKinGrdtK+QH+RzPGCV1PUg/E/pnLVqQLCvD+tmA==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    ci-info "2.0.0"
+    configstore "^5.0.1"
+    file-type "^16.5.3"
+    fs-extra "^10.0.0"
+    got "^11.8.3"
+    lock "^1.1.0"
+    node-object-hash "^2.3.10"
+    proper-lockfile "^4.1.2"
+    tmp "^0.2.1"
+    xdg-basedir "^4.0.0"
+
 gatsby-graphiql-explorer@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/gatsby-graphiql-explorer/-/gatsby-graphiql-explorer-2.0.0.tgz"
@@ -5820,6 +5837,25 @@ gatsby-source-datocms@^3.0.10:
     query-string "6.14.1"
     regenerator-runtime "^0.13.3"
     unist-util-visit "^2.0.3"
+
+gatsby-source-filesystem@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-4.6.0.tgz#c8f19397a6f980b4d92bd57e8967f814b8b5d1de"
+  integrity sha512-Ve6VfFJ4moTX7n8uDTGF7K07HdjWkWW7c9Bn1etcS2QcFRRMj/lxQ/2EFpgVM20jtZ60IG1vqnAzDabqz7UxXQ==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    chokidar "^3.5.2"
+    fastq "^1.13.0"
+    file-type "^16.5.3"
+    fs-extra "^10.0.0"
+    gatsby-core-utils "^3.6.0"
+    got "^9.6.0"
+    md5-file "^5.0.0"
+    mime "^2.5.2"
+    pretty-bytes "^5.4.1"
+    progress "^2.0.3"
+    valid-url "^1.0.9"
+    xstate "^4.26.1"
 
 gatsby-telemetry@^3.0.0:
   version "3.0.0"
@@ -6276,6 +6312,23 @@ got@^11.8.2:
     "@types/responselike" "^1.0.0"
     cacheable-lookup "^5.0.3"
     cacheable-request "^7.0.1"
+    decompress-response "^6.0.0"
+    http2-wrapper "^1.0.0-beta.5.2"
+    lowercase-keys "^2.0.0"
+    p-cancelable "^2.0.0"
+    responselike "^2.0.0"
+
+got@^11.8.3:
+  version "11.8.3"
+  resolved "https://registry.yarnpkg.com/got/-/got-11.8.3.tgz#f496c8fdda5d729a90b4905d2b07dbd148170770"
+  integrity sha512-7gtQ5KiPh1RtGS9/Jbv1ofDpBFuq42gyfEib+ejaRBJuj/3tQFeR5+gw57e4ipaU8c/rCjvX6fkQz2lyDlGAOg==
+  dependencies:
+    "@sindresorhus/is" "^4.0.0"
+    "@szmarczak/http-timer" "^4.0.5"
+    "@types/cacheable-request" "^6.0.1"
+    "@types/responselike" "^1.0.0"
+    cacheable-lookup "^5.0.3"
+    cacheable-request "^7.0.2"
     decompress-response "^6.0.0"
     http2-wrapper "^1.0.0-beta.5.2"
     lowercase-keys "^2.0.0"
@@ -7661,7 +7714,7 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lock@^1.0.0:
+lock@^1.0.0, lock@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/lock/-/lock-1.1.0.tgz"
   integrity sha1-UxV0mdFlOxNspmRRBx/KYVcD+lU=
@@ -8726,7 +8779,7 @@ node-gyp-build@^4.2.3:
   resolved "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.3.0.tgz"
   integrity sha512-iWjXZvmboq0ja1pUGULQBexmxq8CV4xBhX7VDOTbL7ZR4FOowwY/VOtRxBN/yKxmdGoIp4j5ysNT4u3S2pDQ3Q==
 
-node-object-hash@^2.3.9:
+node-object-hash@^2.3.10, node-object-hash@^2.3.9:
   version "2.3.10"
   resolved "https://registry.npmjs.org/node-object-hash/-/node-object-hash-2.3.10.tgz"
   integrity sha512-jY5dPJzw6NHd/KPSfPKJ+IHoFS81/tJ43r34ZeNMXGzCOM8jwQDCD12HYayKIB6MuznrnqIYy2e891NA2g0ibA==
@@ -9764,6 +9817,11 @@ prettier@^2.3.2:
   version "2.4.1"
   resolved "https://registry.npmjs.org/prettier/-/prettier-2.4.1.tgz"
   integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
+
+pretty-bytes@^5.4.1:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.6.0.tgz#356256f643804773c82f64723fe78c92c62beaeb"
+  integrity sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==
 
 pretty-error@^2.1.1, pretty-error@^2.1.2:
   version "2.1.2"
@@ -12213,7 +12271,7 @@ v8-compile-cache@^2.0.3, v8-compile-cache@^2.3.0:
   resolved "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
-valid-url@1.0.9:
+valid-url@1.0.9, valid-url@^1.0.9:
   version "1.0.9"
   resolved "https://registry.npmjs.org/valid-url/-/valid-url-1.0.9.tgz"
   integrity sha1-HBRHm0DxOXp1eC8RXkCGRHQzogA=
@@ -12547,6 +12605,11 @@ xstate@^4.25.0, xstate@^4.9.1:
   version "4.25.0"
   resolved "https://registry.npmjs.org/xstate/-/xstate-4.25.0.tgz"
   integrity sha512-qP7lc/ypOuuWME4ArOBnzaCa90TfHkjiqYDmxpiCjPy6FcXstInA2vH6qRVAHbPXRK4KQIYfIEOk1X38P+TldQ==
+
+xstate@^4.26.1:
+  version "4.29.0"
+  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.29.0.tgz#74161f1e4b7fadb073593085f4fbb58068ee0b86"
+  integrity sha512-F6WF5s6xG/bm8Oxi2ETuzwGQW8yleL5I4JPxZl49m7Uw7D4LAXu+4dvUK78Uo4D863sM8auqw6+1Xmj9mFlmDQ==
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@^4.0.2, xtend@~4.0.1:
   version "4.0.2"
