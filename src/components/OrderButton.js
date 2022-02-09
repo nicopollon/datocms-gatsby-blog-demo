@@ -1,6 +1,14 @@
 import React from "react";
 import { BookBtn } from "../styles/Order";
-export default function OrderButton({ tour, quantity, partecipants, price }) {
+export default function OrderButton({
+  tour,
+  quantity,
+  partecipants,
+  price,
+  name,
+  surname,
+  qrcode,
+}) {
   return (
     <BookBtn
       className="snipcart-add-item"
@@ -15,7 +23,12 @@ export default function OrderButton({ tour, quantity, partecipants, price }) {
       data-item-custom1-value={partecipants}
       data-item-stackable="never"
       data-item-custom2-name="First Name"
+      data-item-custom2-value={name}
       data-item-custom3-name="Surname"
+      data-item-custom3-value={surname}
+      data-item-custom4-name="QRCODE"
+      data-item-custom4-value={qrcode}
+      data-item-custom4-type="hidden"
     >
       Book Now
     </BookBtn>

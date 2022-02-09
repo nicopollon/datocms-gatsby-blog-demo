@@ -24,6 +24,7 @@ const PartecipantCounter = ({
   persons,
   decreaseCounter,
   incrementCounter,
+  inputChange,
 }) => {
   return (
     <PartecipantCounterContainer>
@@ -36,7 +37,13 @@ const PartecipantCounter = ({
         >
           <AiOutlineMinusCircle size={30} />
         </CounterButton>
-        <input placeholder="1" size="1" maxLength={1} value={persons} />
+        <input
+          type="text"
+          placeholder={1}
+          size="1"
+          maxLength={1}
+          value={persons}
+        />
         <CounterButton disabled={persons >= 9} onClick={incrementCounter}>
           <AiOutlinePlusCircle size={30} />
         </CounterButton>

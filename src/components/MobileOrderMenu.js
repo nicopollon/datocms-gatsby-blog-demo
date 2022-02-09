@@ -116,6 +116,7 @@ const MobileOrderMenu = ({ tour, open, setOpen }) => {
             quantity={1}
             price={price}
             partecipants={Partecipants}
+            qrcode={"My Mobile QR CODE"}
           ></OrderButton>
         </OrderRecap>
       </Details>

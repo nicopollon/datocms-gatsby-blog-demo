@@ -21,6 +21,7 @@ import {
   ActivityContent,
 } from "../../../styles/activityPage";
 import MobileOrder from "../../../components/MobileOrder";
+import Test from "../../../components/test";
 export default function Tour({ data: { tour } }) {
   return (
     <>
@@ -60,6 +61,13 @@ export default function Tour({ data: { tour } }) {
           <ActivityType tourTypes={tour.tourTypes} />
           <h1>{tour.title}</h1>
         </TourHeader>
+        <Test
+          firstName={"Nico"}
+          surname={"Pietrodangelo"}
+          tourName={tour.title}
+          ticketPrice={tour.price}
+          uniqueId={tour.id}
+        />
         <ActivityContainer>
           <ActivityContent>
             <Description>{tour.description}</Description>
