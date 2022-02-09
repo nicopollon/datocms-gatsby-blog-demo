@@ -12,8 +12,17 @@ import {
   HeroCover,
   HeroContentWrapper,
 } from "../styles/CategoryIndex";
+import SliderComponent from "../components/slider";
 export default function Index({
-  data: { site, blog, allTours, vesuviusTours, capriTours },
+  data: {
+    site,
+    blog,
+    allTours,
+    vesuviusTours,
+    capriTours,
+    amalfiTours,
+    sorrentoTours,
+  },
 }) {
   return (
     <>
@@ -38,10 +47,18 @@ export default function Index({
         </HeroContentWrapper>
       </HeroCover>
       <Container>
-        <ActivityCarousel activities={allTours} title={"Top Tours"} />
+        <SliderComponent activities={allTours} title={"Top Tours"} />
+        <SliderComponent activities={vesuviusTours} title={"Vesuvius Area"} />
+        <SliderComponent activities={capriTours} title={"Capri Island"} />
+        <SliderComponent activities={amalfiTours} title={"Amalfi Coast"} />
+        <SliderComponent activities={sorrentoTours} title={"Sorrento"} />
 
+        <ActivityCarousel activities={allTours} title={"Top Tours"} />
         <ActivityCarousel activities={vesuviusTours} title={"Vesuvius Tours"} />
         <ActivityCarousel activities={capriTours} title={"Capri Tours"} />
+        <ActivityCarousel activities={amalfiTours} title={"Amalfi Coast"} />
+        <ActivityCarousel activities={sorrentoTours} title={"Sorrento"} />
+
         <Footer />
       </Container>
     </>
@@ -61,6 +78,26 @@ export const query = graphql`
       }
     }
     allTours: allDatoCmsTour(limit: 4) {
+      nodes {
+        categoryLink {
+          name
+          slug
+        }
+        title
+        slug
+        price
+        tourTypes
+        tourAttributes
+        description
+        duration
+        coverImage {
+          gatsbyImageData(layout: CONSTRAINED, aspectRatio: 2.5)
+        }
+      }
+    }
+    vesuviusTours: allDatoCmsTour(
+      filter: { categoryLink: { slug: { eq: "vesuvian-area" } } }
+    ) {
       nodes {
         categoryLink {
           name
@@ -98,8 +135,28 @@ export const query = graphql`
         }
       }
     }
-    vesuviusTours: allDatoCmsTour(
-      filter: { categoryLink: { slug: { eq: "vesuvian-area" } } }
+    amalfiTours: allDatoCmsTour(
+      filter: { categoryLink: { slug: { eq: "amalfi-coast" } } }
+    ) {
+      nodes {
+        categoryLink {
+          name
+          slug
+        }
+        title
+        slug
+        price
+        tourTypes
+        tourAttributes
+        description
+        duration
+        coverImage {
+          gatsbyImageData(layout: CONSTRAINED, aspectRatio: 2.5)
+        }
+      }
+    }
+    sorrentoTours: allDatoCmsTour(
+      filter: { categoryLink: { slug: { eq: "sorrento" } } }
     ) {
       nodes {
         categoryLink {

@@ -1,27 +1,56 @@
 import React from "react";
 import { Link } from "gatsby";
-
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import ActivityType from "./activityType";
-import { BsClockHistory } from "react-icons/bs";
+import Slider from "react-slick";
 import {
-  ActivityCarouselWrapper,
   ActivityCardTitle,
   ActivityCardPrice,
-  ActivityCardWrapper,
-  ActivityCardContainer,
+  SliderWrapper,
   ActivityCardContent,
   ActivityCarouselTitle,
+  StyledSlider,
+  ActivitySlide,
   Duration,
   Cover,
 } from "../styles/activityCarousel";
-const ActivityCarousel = ({ activities, title }) => {
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ActivityType from "./activityType";
+
+import { BsClockHistory } from "react-icons/bs";
+
+import { GatsbyImage } from "gatsby-plugin-image";
+export default function SliderComponent({ activities, title }) {
+  let sliderSettings = {
+    dots: true,
+    slidesToShow: 1,
+    swipeToSlide: true,
+    initialSlide: 0,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: activities.nodes.length > 1 ? 2 : 1,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <ActivityCarouselWrapper>
+    <SliderWrapper style={{ margin: "20px 0" }}>
       <ActivityCarouselTitle>{title}</ActivityCarouselTitle>
-      <ActivityCardWrapper>
-        {activities.nodes.map((e) => (
-          <ActivityCardContainer key={e.id}>
+      <StyledSlider {...sliderSettings}>
+        {activities.nodes.map((e, index) => (
+          <ActivitySlide key={index}>
             <Link to={`/tours/${e.categoryLink.slug}/${e.slug}`}>
               <Cover>
                 <GatsbyImage
@@ -56,11 +85,9 @@ const ActivityCarousel = ({ activities, title }) => {
                 </ActivityCardPrice>
               </ActivityCardContent>
             </Link>
-          </ActivityCardContainer>
+          </ActivitySlide>
         ))}
-      </ActivityCardWrapper>
-    </ActivityCarouselWrapper>
+      </StyledSlider>
+    </SliderWrapper>
   );
-};
-
-export default ActivityCarousel;
+}

@@ -1,5 +1,6 @@
 import React from "react";
+import { ContainerStyled } from "../styles/Container";
 
 export default function Container({ children }) {
-  return <div className="container mx-auto px-3">{children}</div>;
+  return <ContainerStyled>{children}</ContainerStyled>;
 }

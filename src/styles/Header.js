@@ -15,7 +15,7 @@ export const HeaderContent = styled.div`
 `;
 
 export const MobileHeaderContent = styled.div`
-  display: flex;
+  display: none;
   width: 100%;
   height: 80px;
   justify-content: space-between;
@@ -23,8 +23,8 @@ export const MobileHeaderContent = styled.div`
   font-size: 1.3rem;
   font-weight: 700;
 
-  @media screen and (min-width: 769px) {
-    display: none;
+  @media screen and (max-width: 768px) {
+    display: flex;
   }
 `;
 

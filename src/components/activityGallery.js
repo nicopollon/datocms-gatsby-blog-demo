@@ -27,11 +27,11 @@ export const TourGallery = styled.div`
 `;
 
 export const MobileGallery = styled.div`
-  display: flex;
+  display: none;
   width: 100%;
   height: 300px;
   min-height: 250px;
-  @media screen and (min-width: 768px) {
-    display: none;
+  @media screen and (max-width: 768px) {
+    display: flex;
   }
 `;
