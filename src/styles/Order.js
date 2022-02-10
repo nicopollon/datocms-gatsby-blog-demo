@@ -77,7 +77,8 @@ export const BookModal = styled.div`
   background-color: #fff;
   position: fixed;
   opacity: ${({ open }) => (open ? "1" : "0")};
-  display: flex;
+  overflow-y: scroll;
+  display: none;
   flex-direction: column;
   bottom: ${({ open }) => (open ? "0px" : "-100%")};
 
@@ -87,8 +88,8 @@ export const BookModal = styled.div`
   justify-content: start;
   align-items: flex-start;
   transition: all 0.3s ease-in-out;
-  @media screen and (min-width: 768px) {
-    display: none;
+  @media screen and (max-width: 768px) {
+    display: flex;
   }
 `;
 
@@ -142,4 +143,18 @@ export const PriceCalc = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 8px 12px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 3px solid #dcdfe4;
+  transition: all 0.2s;
+  cursor: pointer;
+  :hover {
+    border: 3px solid #0066ff;
+    background-color: #ebeef1;
+  }
 `;

@@ -61,13 +61,6 @@ export default function Tour({ data: { tour } }) {
           <ActivityType tourTypes={tour.tourTypes} />
           <h1>{tour.title}</h1>
         </TourHeader>
-        <Test
-          firstName={"Nico"}
-          surname={"Pietrodangelo"}
-          tourName={tour.title}
-          ticketPrice={tour.price}
-          uniqueId={tour.id}
-        />
         <ActivityContainer>
           <ActivityContent>
             <Description>{tour.description}</Description>

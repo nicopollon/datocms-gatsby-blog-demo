@@ -11,17 +11,30 @@ import {
   Price,
   PriceCalc,
 } from "../styles/Order";
+import CustomerInfo from "./CustomerInfo";
 import PartecipantCounter from "./PartecipantCounter";
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import OrderButton from "./OrderButton";
+import QrCodeComponent from "./qrcode";
+import { StaticImage } from "gatsby-plugin-image";
 const MobileOrderMenu = ({ tour, open, setOpen }) => {
   const [adults, setAdults] = useState(1);
   const [Partecipants, setPartecipants] = useState(["Adult: " + adults], [""]);
   const [visible, setVisible] = useState(false);
   const [price, setPrice] = useState(tour.price);
   const [children, setChildren] = useState(0);
+
+  const [firstName, setFirstName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [qrCodeUrl, setQrCodeUrl] = useState("");
+  const handleNameChange = (e, firstName) => {
+    setFirstName(e.target.value);
+  };
+  const handleSurnameChange = (e, firstName) => {
+    setSurname(e.target.value);
+  };
 
   const incrementCounter = (person, setPersons, personType) => {
     setPersons(person + 1);
@@ -55,6 +68,15 @@ const MobileOrderMenu = ({ tour, open, setOpen }) => {
       PartecipantsCopy[1] = " Child: " + (person - 1);
       setPartecipants(PartecipantsCopy);
     }
+  };
+
+  const downloadQR = () => {
+    const canvas = document.getElementById("qrcode");
+    const pngUrl = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    console.log(pngUrl);
+    setQrCodeUrl(pngUrl);
   };
   return (
     <BookModal open={open}>
@@ -97,6 +119,25 @@ const MobileOrderMenu = ({ tour, open, setOpen }) => {
           />
           <BookBtn onClick={() => setVisible(false)}>Done</BookBtn>
         </PartecipantsMobile>
+        <CustomerInfo
+          infoType={"Your Name"}
+          info={firstName}
+          inputChange={(e) => handleNameChange(e, firstName)}
+        />
+        <CustomerInfo
+          info={surname}
+          infoType="Your surname"
+          inputChange={(e) => handleSurnameChange(e, surname)}
+        />
+        <QrCodeComponent
+          firstName={firstName}
+          surname={surname}
+          tourName={tour.title}
+          ticketPrice={price}
+          uniqueId={"tbd"}
+          elementId={"qrcode"}
+          partecipants={Partecipants}
+        />
         <OrderRecap>
           <h2>{tour.title}</h2>
           <p style={{ fontSize: "12px" }}>{tour.description}</p>
@@ -111,12 +152,16 @@ const MobileOrderMenu = ({ tour, open, setOpen }) => {
             </p>
           </PriceCalc>
           <Price>Total Price: {price}€</Price>
+          {qrCodeUrl}
           <OrderButton
+            onClick={downloadQR}
+            name={firstName}
+            surname={surname}
             tour={tour}
             quantity={1}
             price={price}
             partecipants={Partecipants}
-            qrcode={"My Mobile QR CODE"}
+            qrcode={qrCodeUrl}
           ></OrderButton>
         </OrderRecap>
       </Details>

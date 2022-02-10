@@ -8,9 +8,11 @@ export default function OrderButton({
   name,
   surname,
   qrcode,
+  onClick,
 }) {
   return (
     <BookBtn
+      onClick={onClick}
       className="snipcart-add-item"
       data-item-id={tour.id}
       data-item-price={price}
@@ -24,11 +26,13 @@ export default function OrderButton({
       data-item-stackable="never"
       data-item-custom2-name="First Name"
       data-item-custom2-value={name}
+      data-item-custom2-required="true"
       data-item-custom3-name="Surname"
       data-item-custom3-value={surname}
+      data-item-custom3-required="true"
       data-item-custom4-name="QRCODE"
       data-item-custom4-value={qrcode}
-      data-item-custom4-type="hidden"
+      data-item-custom4-type="readonly"
     >
       Book Now
     </BookBtn>

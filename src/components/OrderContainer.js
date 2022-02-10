@@ -4,6 +4,8 @@ import OrderButton from "./OrderButton";
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import PartecipantCounter from "./PartecipantCounter";
+import Test from "./test";
+import QRCode from "qrcode.react";
 import {
   Price,
   OrderWrapper,
@@ -12,6 +14,7 @@ import {
   PartecipantFloating,
 } from "../styles/Order";
 import CustomerInfo from "./CustomerInfo";
+import QrCodeComponent from "./qrcode";
 
 const OrderContainer = ({ tour }) => {
   const [adults, setAdults] = useState(1);
@@ -25,6 +28,7 @@ const OrderContainer = ({ tour }) => {
   const [firstName, setFirstName] = useState("");
 
   const [surname, setSurname] = useState("");
+
   const incrementCounter = (person, setPersons, personType) => {
     const personInt = parseInt(person);
     const tourPriceInt = parseInt(tour.price);
@@ -102,6 +106,14 @@ const OrderContainer = ({ tour }) => {
           }
           personType="Children"
         />
+        <button
+          style={{ color: "#0066ff", fontSize: "18px", marginTop: "12px" }}
+          onClick={() => {
+            setVisible(false);
+          }}
+        >
+          Done
+        </button>
       </PartecipantFloating>
       <CustomerInfo
         infoType={"Your Name"}
@@ -112,7 +124,7 @@ const OrderContainer = ({ tour }) => {
         info={surname}
         infoType="Your surname"
         inputChange={(e) => handleSurnameChange(e, surname)}
-      />
+      />{" "}
       <OrderButton
         infoType={"Your Surname"}
         tour={tour}
@@ -121,7 +133,7 @@ const OrderContainer = ({ tour }) => {
         partecipants={Partecipants}
         name={firstName}
         surname={surname}
-        qrcode={"My QR CODE "}
+        qrcode={""}
       />
     </OrderWrapper>
   );
