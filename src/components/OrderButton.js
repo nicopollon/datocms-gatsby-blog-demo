@@ -16,7 +16,6 @@ export default function OrderButton({
       className="snipcart-add-item"
       data-item-id={tour.id}
       data-item-price={price}
-      data-item-url={"/"}
       data-item-name={tour.title}
       data-item-quantity={quantity}
       data-item-image={tour.coverImage.gatsbyImageData}
