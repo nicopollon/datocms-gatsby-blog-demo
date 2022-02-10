@@ -17,6 +17,7 @@ import {
   MobileActionContainer,
 } from "../styles/Header";
 import Container from "./container";
+import { Helmet } from "react-helmet";
 
 /* export default function Intro() {
   return (
@@ -48,60 +49,70 @@ const Intro = () => {
         }
       `}
       render={(data) => (
-        <HeaderWrapper>
-          <HeaderContent>
-            <Link to="/">
-              <h1 className="text-4xl md:text-4l font-bold tracking-tighter leading-tight md:pr-8">
-                Travel Agency.
-              </h1>
-            </Link>
-            <LinkContainer>
-              {data.allDatoCmsCategory.nodes.map((e, index) => (
-                <Link key={index} to={`/tours/${e.slug}`}>
-                  {e.name}
-                </Link>
-              ))}
-            </LinkContainer>
-            <Cart />
-          </HeaderContent>
-          <MobileHeaderContent>
-            <Link to="/">
-              <h1>Travel Agency.</h1>
-            </Link>{" "}
-            <MobileActionContainer>
-              <Cart />
-              <MobileMenu onClick={() => setSidebar(!openSidebar)}>
-                <FiMenu size={35} />
-              </MobileMenu>
-            </MobileActionContainer>
-          </MobileHeaderContent>
-          <MobileSidebar open={openSidebar}>
-            <Container>
-              <MobileHeaderContent>
-                <Link to="/" onClick={() => setSidebar(!openSidebar)}>
-                  <h1>Travel Agency.</h1>
-                </Link>{" "}
-                <MobileActionContainer>
-                  <Cart />
-                  <MobileMenu onClick={() => setSidebar(!openSidebar)}>
-                    {openSidebar ? (
-                      <AiOutlineClose size={35} />
-                    ) : (
-                      <FiMenu size={35} />
-                    )}
-                  </MobileMenu>
-                </MobileActionContainer>
-              </MobileHeaderContent>
-              <MobileLinkContainer>
+        <>
+          <Helmet>
+            <link rel="preconnect" href="https://app.snipcart.com" />
+            <link rel="preconnect" href="https://cdn.snipcart.com" />
+            <link
+              rel="stylesheet"
+              href="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.css"
+            />
+          </Helmet>
+          <HeaderWrapper>
+            <HeaderContent>
+              <Link to="/">
+                <h1 className="text-4xl md:text-4l font-bold tracking-tighter leading-tight md:pr-8">
+                  Travel Agency.
+                </h1>
+              </Link>
+              <LinkContainer>
                 {data.allDatoCmsCategory.nodes.map((e, index) => (
                   <Link key={index} to={`/tours/${e.slug}`}>
                     {e.name}
                   </Link>
                 ))}
-              </MobileLinkContainer>
-            </Container>
-          </MobileSidebar>
-        </HeaderWrapper>
+              </LinkContainer>
+              <Cart />
+            </HeaderContent>
+            <MobileHeaderContent>
+              <Link to="/">
+                <h1>Travel Agency.</h1>
+              </Link>{" "}
+              <MobileActionContainer>
+                <Cart />
+                <MobileMenu onClick={() => setSidebar(!openSidebar)}>
+                  <FiMenu size={35} />
+                </MobileMenu>
+              </MobileActionContainer>
+            </MobileHeaderContent>
+            <MobileSidebar open={openSidebar}>
+              <Container>
+                <MobileHeaderContent>
+                  <Link to="/" onClick={() => setSidebar(!openSidebar)}>
+                    <h1>Travel Agency.</h1>
+                  </Link>{" "}
+                  <MobileActionContainer>
+                    <Cart />
+                    <MobileMenu onClick={() => setSidebar(!openSidebar)}>
+                      {openSidebar ? (
+                        <AiOutlineClose size={35} />
+                      ) : (
+                        <FiMenu size={35} />
+                      )}
+                    </MobileMenu>
+                  </MobileActionContainer>
+                </MobileHeaderContent>
+                <MobileLinkContainer>
+                  {data.allDatoCmsCategory.nodes.map((e, index) => (
+                    <Link key={index} to={`/tours/${e.slug}`}>
+                      {e.name}
+                    </Link>
+                  ))}
+                </MobileLinkContainer>
+              </Container>
+            </MobileSidebar>
+          </HeaderWrapper>
+        </>
       )}
     ></StaticQuery>
   );

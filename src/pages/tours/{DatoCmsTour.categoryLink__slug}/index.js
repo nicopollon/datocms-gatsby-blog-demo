@@ -78,6 +78,15 @@ export default function Index({
       />
       <Container>{getToursType(category.categoryLink.name)} </Container>
       <Footer />
+      <script
+        async
+        src="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.js"
+      />
+      <div
+        hidden
+        id="snipcart"
+        data-api-key="YThhODczYjYtYWMzZi00MzExLWFkMDMtNTgxZmMxNjM2YzYxNjM3Nzg2MzE4MTkwNjQxOTUx"
+      />
     </>
   );
 }
