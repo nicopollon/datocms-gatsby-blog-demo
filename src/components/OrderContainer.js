@@ -11,7 +11,7 @@ import {
   PartecipantSpenWrap,
   PartecipantFloating,
 } from "../styles/Order";
-import CustomerInfo from "./CustomerINfo";
+import CustomerInfo from "./CustomerInfo";
 
 const OrderContainer = ({ tour }) => {
   const [adults, setAdults] = useState(1);

@@ -50,7 +50,7 @@ export default function Tour({ data: { tour } }) {
           <GatsbyImage
             key={tour.tourGallery[0]}
             alt=""
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", width: "100%" }}
             image={tour.tourGallery[0].gatsbyImageData}
           />
         </MobileGallery>

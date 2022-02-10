@@ -63,7 +63,7 @@ export const MobileSidebar = styled.aside`
   top: ${({ open }) => (open ? "0px" : "-100%")};
 
   left: 0;
-  z-index: 1000;
+  z-index: 9999;
 
   justify-content: start;
   align-items: flex-start;

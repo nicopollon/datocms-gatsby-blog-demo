@@ -4,7 +4,7 @@ import Category from "../../../components/Category";
 import Container from "../../../components/container";
 import Intro from "../../../components/intro";
 import ActivityCarousel from "../../../components/activityCard";
-
+import SliderComponent from "../../../components/slider";
 import Footer from "../../../components/footer";
 export default function Index({
   data: {
@@ -15,28 +15,52 @@ export default function Index({
     allVesuviusTours,
   },
 }) {
-  const getToursType = (category) => {
-    if (category === "Capri Island") {
+  const getToursType = (catName) => {
+    if (catName === "Capri Island") {
       return (
-        <ActivityCarousel activities={allCapriTours} title={"Most Popular"} />
+        <>
+          <ActivityCarousel activities={allCapriTours} title={"Most Popular"} />
+
+          <SliderComponent activities={allCapriTours} title={"Capri Island"} />
+        </>
       );
-    } else if (category === "Vesuvian Area") {
+    }
+    if (catName === "Vesuvian Area") {
       return (
-        <ActivityCarousel
-          activities={allVesuviusTours}
-          title={"Most Popular"}
-        />
+        <>
+          <ActivityCarousel
+            activities={allVesuviusTours}
+            title={"Most Popular"}
+          />
+          <SliderComponent
+            activities={allVesuviusTours}
+            title={"Vesuvius Area"}
+          />
+        </>
       );
-    } else if (category === "Sorrento") {
+    }
+    if (catName === "Sorrento") {
       return (
-        <ActivityCarousel
-          activities={allSorrentoTours}
-          title={"Most Popular"}
-        />
+        <>
+          <ActivityCarousel
+            activities={allSorrentoTours}
+            title={"Most Popular"}
+          />
+
+          <SliderComponent activities={allSorrentoTours} title={"Sorrento"} />
+        </>
       );
-    } else if (category === "Amalfi Coast") {
+    }
+    if (catName === "Amalfi Coast") {
       return (
-        <ActivityCarousel activities={allAmalfiTours} title={"Most Popular"} />
+        <>
+          <ActivityCarousel
+            activities={allAmalfiTours}
+            title={"Most Popular"}
+          />
+
+          <SliderComponent activities={allAmalfiTours} title={"Amalfi Coast"} />
+        </>
       );
     }
   };
@@ -52,9 +76,8 @@ export default function Index({
         description={category.categoryLink.description}
         image={category.categoryLink.heroImage.gatsbyImageData}
       />
-      <Container>
-        {getToursType(category.categoryLink.name)} <Footer />{" "}
-      </Container>
+      <Container>{getToursType(category.categoryLink.name)} </Container>
+      <Footer />
     </>
   );
 }
