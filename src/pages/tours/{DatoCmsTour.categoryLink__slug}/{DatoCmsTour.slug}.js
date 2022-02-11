@@ -88,6 +88,7 @@ export const query = graphql`
       tourAttributes
       description
       duration
+      slug
       inclusions {
         value
       }

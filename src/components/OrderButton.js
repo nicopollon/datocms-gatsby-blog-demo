@@ -17,7 +17,7 @@ export default function OrderButton({
       data-item-id={tour.id}
       data-item-price={price}
       data-item-name={tour.title}
-      data-item-url={window.location.href + "/"}
+      data-item-url="/"
       data-item-quantity={quantity}
       data-item-image={tour.coverImage.gatsbyImageData}
       data-item-custom1-name="Ticket Type"
@@ -30,9 +30,6 @@ export default function OrderButton({
       data-item-custom3-name="Surname"
       data-item-custom3-value={surname}
       data-item-custom3-required="true"
-      data-item-custom4-name="QRCODE"
-      data-item-custom4-value={qrcode}
-      data-item-custom4-type="readonly"
     >
       Book Now
     </BookBtn>
