@@ -29,6 +29,8 @@ const OrderContainer = ({ tour }) => {
 
   const [surname, setSurname] = useState("");
 
+  const [qrCodeUrl, setQrCodeUrl] = useState("");
+
   const incrementCounter = (person, setPersons, personType) => {
     const personInt = parseInt(person);
     const tourPriceInt = parseInt(tour.price);
@@ -76,6 +78,15 @@ const OrderContainer = ({ tour }) => {
   };
   const handleSurnameChange = (e, firstName) => {
     setSurname(e.target.value);
+  };
+
+  const downloadQR = () => {
+    const canvas = document.getElementById("qrcode");
+    const pngUrl = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    console.log(pngUrl);
+    setQrCodeUrl(pngUrl);
   };
 
   return (
@@ -126,14 +137,14 @@ const OrderContainer = ({ tour }) => {
         inputChange={(e) => handleSurnameChange(e, surname)}
       />{" "}
       <OrderButton
-        infoType={"Your Surname"}
+        onClick={downloadQR}
         tour={tour}
         quantity={1}
         price={price}
         partecipants={Partecipants}
         name={firstName}
         surname={surname}
-        qrcode={""}
+        qrcode={qrCodeUrl}
       />
     </OrderWrapper>
   );

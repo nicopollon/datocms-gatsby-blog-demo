@@ -20,8 +20,8 @@ const ActivityCarousel = ({ activities, title }) => {
     <ActivityCarouselWrapper>
       <ActivityCarouselTitle>{title}</ActivityCarouselTitle>
       <ActivityCardWrapper>
-        {activities.nodes.map((e) => (
-          <ActivityCardContainer key={e.id}>
+        {activities.nodes.map((e, index) => (
+          <ActivityCardContainer key={index}>
             <Link to={`/tours/${e.categoryLink.slug}/${e.slug}`}>
               <Cover>
                 <GatsbyImage

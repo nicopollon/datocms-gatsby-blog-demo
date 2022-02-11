@@ -34,9 +34,9 @@ export default function Tour({ data: { tour } }) {
 
         {tour.tourGallery && (
           <TourGallery>
-            {tour.tourGallery.map((e) => (
+            {tour.tourGallery.map((e, index) => (
               <GatsbyImage
-                key={e}
+                key={index}
                 alt=""
                 style={{ objectFit: "cover" }}
                 image={e.gatsbyImageData}
