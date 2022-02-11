@@ -139,7 +139,6 @@ const OrderContainer = ({ tour, url }) => {
       <OrderButton
         onClick={downloadQR}
         tour={tour}
-        quantity={1}
         price={price}
         partecipants={Partecipants}
         name={firstName}

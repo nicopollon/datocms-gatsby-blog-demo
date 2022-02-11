@@ -158,7 +158,6 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
             name={firstName}
             surname={surname}
             tour={tour}
-            quantity={1}
             price={price}
             partecipants={Partecipants}
             qrcode={qrCodeUrl}
