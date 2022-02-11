@@ -4,8 +4,6 @@ export default function OrderButton({
   tour,
   partecipants,
   price,
-  name,
-  surname,
   qrcode,
   onClick,
   itemURL,
@@ -24,10 +22,10 @@ export default function OrderButton({
       data-item-custom1-value={partecipants}
       data-item-stackable="never"
       data-item-custom2-name="First Name"
-      data-item-custom2-value={name}
+      data-item-custom2-value=""
       data-item-custom2-required="true"
       data-item-custom3-name="Surname"
-      data-item-custom3-value={surname}
+      data-item-custom3-value=""
       data-item-custom3-required="true"
       data-item-custom4-name="qrCode"
       data-item-custom4-type="hidden"

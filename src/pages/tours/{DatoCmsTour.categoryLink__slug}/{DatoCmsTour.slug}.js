@@ -57,7 +57,6 @@ export default function Tour({ data: { tour } }) {
           />
         </MobileGallery>
       )}{" "}
-      <p>{tour.slug + tour.categoryLink.slug}</p>
       <Container>
         {" "}
         <TourHeader forMobile>
@@ -75,7 +74,6 @@ export default function Tour({ data: { tour } }) {
           </ActivityContent>{" "}
           <OrderContainer tour={tour} url={url} />
         </ActivityContainer>
-        <p>{url}</p>
         <MobileOrder tour={tour} url={url} />
         <Footer />
       </Container>

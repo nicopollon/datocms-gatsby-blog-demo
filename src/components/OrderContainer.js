@@ -25,10 +25,6 @@ const OrderContainer = ({ tour, url }) => {
   const [visible, setVisible] = useState(false);
   const [price, setPrice] = useState(tour.price);
   const [children, setChildren] = useState(0);
-  const [firstName, setFirstName] = useState("");
-
-  const [surname, setSurname] = useState("");
-
   const [qrCodeUrl, setQrCodeUrl] = useState("");
 
   const incrementCounter = (person, setPersons, personType) => {
@@ -71,13 +67,6 @@ const OrderContainer = ({ tour, url }) => {
       PartecipantsCopy[1] = " Child x " + (personInt - 1);
       setPartecipants(PartecipantsCopy);
     }
-  };
-
-  const handleNameChange = (e, firstName) => {
-    setFirstName(e.target.value);
-  };
-  const handleSurnameChange = (e, firstName) => {
-    setSurname(e.target.value);
   };
 
   const downloadQR = () => {
@@ -126,23 +115,18 @@ const OrderContainer = ({ tour, url }) => {
           Done
         </button>
       </PartecipantFloating>
-      <CustomerInfo
-        infoType={"Your Name"}
-        info={firstName}
-        inputChange={(e) => handleNameChange(e, firstName)}
+      <QrCodeComponent
+        tourName={tour.title}
+        ticketPrice={price}
+        uniqueId={"tbd"}
+        elementId={"qrcode"}
+        partecipants={Partecipants}
       />
-      <CustomerInfo
-        info={surname}
-        infoType="Your surname"
-        inputChange={(e) => handleSurnameChange(e, surname)}
-      />{" "}
       <OrderButton
         onClick={downloadQR}
         tour={tour}
         price={price}
         partecipants={Partecipants}
-        name={firstName}
-        surname={surname}
         qrcode={qrCodeUrl}
         itemURL={url}
       />

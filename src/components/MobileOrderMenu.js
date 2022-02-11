@@ -26,15 +26,7 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
   const [price, setPrice] = useState(tour.price);
   const [children, setChildren] = useState(0);
 
-  const [firstName, setFirstName] = useState("");
-  const [surname, setSurname] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState("");
-  const handleNameChange = (e, firstName) => {
-    setFirstName(e.target.value);
-  };
-  const handleSurnameChange = (e, firstName) => {
-    setSurname(e.target.value);
-  };
 
   const incrementCounter = (person, setPersons, personType) => {
     setPersons(person + 1);
@@ -77,6 +69,7 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
       .replace("image/png", "image/octet-stream");
     console.log(pngUrl);
     setQrCodeUrl(pngUrl);
+    setOpen(false);
   };
   return (
     <BookModal open={open}>
@@ -119,19 +112,8 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
           />
           <BookBtn onClick={() => setVisible(false)}>Done</BookBtn>
         </PartecipantsMobile>
-        <CustomerInfo
-          infoType={"Your Name"}
-          info={firstName}
-          inputChange={(e) => handleNameChange(e, firstName)}
-        />
-        <CustomerInfo
-          info={surname}
-          infoType="Your surname"
-          inputChange={(e) => handleSurnameChange(e, surname)}
-        />
+
         <QrCodeComponent
-          firstName={firstName}
-          surname={surname}
           tourName={tour.title}
           ticketPrice={price}
           uniqueId={"tbd"}
@@ -155,8 +137,6 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
           {qrCodeUrl}
           <OrderButton
             onClick={downloadQR}
-            name={firstName}
-            surname={surname}
             tour={tour}
             price={price}
             partecipants={Partecipants}
