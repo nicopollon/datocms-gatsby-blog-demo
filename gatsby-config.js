@@ -23,7 +23,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-snipcart-advanced`,
       options: {
-        version: "3.0.19",
+        version: "3.3.1",
         publicApiKey:
           "YThhODczYjYtYWMzZi00MzExLWFkMDMtNTgxZmMxNjM2YzYxNjM3Nzg2MzE4MTkwNjQxOTUx", // use public api key here or in environment variable
         defaultLang: "en",

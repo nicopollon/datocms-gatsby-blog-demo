@@ -16,7 +16,7 @@ import {
 import CustomerInfo from "./CustomerInfo";
 import QrCodeComponent from "./qrcode";
 
-const OrderContainer = ({ tour }) => {
+const OrderContainer = ({ tour, url }) => {
   const [adults, setAdults] = useState(1);
   const [Partecipants, setPartecipants] = useState(
     ["Adult x" + adults + " "],
@@ -145,6 +145,7 @@ const OrderContainer = ({ tour }) => {
         name={firstName}
         surname={surname}
         qrcode={qrCodeUrl}
+        itemURL={url}
       />
     </OrderWrapper>
   );

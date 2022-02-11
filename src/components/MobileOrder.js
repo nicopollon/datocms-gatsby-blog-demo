@@ -8,7 +8,7 @@ import {
 import { BookBtn } from "../styles/Order";
 import { useState } from "react";
 import MobileOrderMenu from "./MobileOrderMenu";
-const MobileOrder = ({ tour }) => {
+const MobileOrder = ({ tour, url }) => {
   const [adults, setAdults] = useState(1);
   const [Partecipants, setPartecipants] = useState(["Adult x" + adults], [""]);
   const [price, setPrice] = useState(tour.price);
@@ -28,6 +28,7 @@ const MobileOrder = ({ tour }) => {
         tour={tour}
         open={open}
         setOpen={() => setopen(false)}
+        url={url}
       ></MobileOrderMenu>
     </>
   );

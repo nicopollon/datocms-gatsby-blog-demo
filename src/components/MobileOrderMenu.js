@@ -19,7 +19,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import OrderButton from "./OrderButton";
 import QrCodeComponent from "./qrcode";
 import { StaticImage } from "gatsby-plugin-image";
-const MobileOrderMenu = ({ tour, open, setOpen }) => {
+const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
   const [adults, setAdults] = useState(1);
   const [Partecipants, setPartecipants] = useState(["Adult: " + adults], [""]);
   const [visible, setVisible] = useState(false);
@@ -162,6 +162,7 @@ const MobileOrderMenu = ({ tour, open, setOpen }) => {
             price={price}
             partecipants={Partecipants}
             qrcode={qrCodeUrl}
+            itemURL={url}
           ></OrderButton>
         </OrderRecap>
       </Details>

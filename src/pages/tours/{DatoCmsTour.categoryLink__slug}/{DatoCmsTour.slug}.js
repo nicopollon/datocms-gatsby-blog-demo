@@ -22,7 +22,9 @@ import {
 } from "../../../styles/activityPage";
 import MobileOrder from "../../../components/MobileOrder";
 import Test from "../../../components/test";
+import { MdTextRotateUp } from "react-icons/md";
 export default function Tour({ data: { tour } }) {
+  const url = typeof window !== "undefined" ? window.location.href : "";
   return (
     <>
       <Container>
@@ -55,6 +57,7 @@ export default function Tour({ data: { tour } }) {
           />
         </MobileGallery>
       )}{" "}
+      <p>{tour.slug + tour.categoryLink.slug}</p>
       <Container>
         {" "}
         <TourHeader forMobile>
@@ -70,9 +73,9 @@ export default function Tour({ data: { tour } }) {
               inclusions={tour.inclusions}
             />
           </ActivityContent>{" "}
-          <OrderContainer tour={tour} />
+          <OrderContainer tour={tour} url={url} />
         </ActivityContainer>
-        <MobileOrder tour={tour} />
+        <MobileOrder tour={tour} url={url} />
         <Footer />
       </Container>
     </>
@@ -91,6 +94,9 @@ export const query = graphql`
       slug
       inclusions {
         value
+      }
+      categoryLink {
+        slug
       }
       price
       childPrice

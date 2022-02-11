@@ -9,6 +9,7 @@ export default function OrderButton({
   surname,
   qrcode,
   onClick,
+  itemURL,
 }) {
   return (
     <BookBtn
@@ -17,7 +18,7 @@ export default function OrderButton({
       data-item-id={tour.id}
       data-item-price={price}
       data-item-name={tour.title}
-      data-item-url="/"
+      data-item-url={itemURL}
       data-item-quantity={quantity}
       data-item-image={tour.coverImage.gatsbyImageData}
       data-item-custom1-name="Ticket Type"
