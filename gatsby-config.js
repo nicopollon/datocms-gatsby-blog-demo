@@ -21,21 +21,14 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-snipcart-advanced`,
+      resolve: "gatsby-plugin-snipcart",
       options: {
-        version: "3.0.19",
-        publicApiKey:
-          "YThhODczYjYtYWMzZi00MzExLWFkMDMtNTgxZmMxNjM2YzYxNjM3Nzg2MzE4MTkwNjQxOTUx", // use public api key here or in environment variable
-        defaultLang: "en",
-        currency: "eur",
-        openCartOnAdd: true,
-        useSideCart: false,
-        // be careful with this mode cart. The cart in this mode has a bug of scroll in firefox
-        locales: {},
+        apiKey:
+          "YThhODczYjYtYWMzZi00MzExLWFkMDMtNTgxZmMxNjM2YzYxNjM3Nzg2MzE4MTkwNjQxOTUx",
+        autopop: true,
+        js: "https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js",
+        styles: "https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.css",
       },
-      templatesUrl: null,
-      // not work on dev. Gatsby not serve html file in dev https://github.com/gatsbyjs/gatsby/issues/13072
-      innerHTML: ``,
     },
 
     `gatsby-plugin-react-helmet`,
