@@ -100,13 +100,22 @@ const OrderContainer = ({ tour, url }) => {
   }
   const addProductbyJs = () => {
     try {
-      window.Snipcart.api.cart.items.add({
-        id: tour.id,
-        name: tour.title,
-        price: price,
-        url: url,
-        quantity: 1,
-      });
+      window.Snipcart.api.cart.items.add(
+        {
+          id: tour.title + "Adult",
+          name: tour.title,
+          price: tour.price,
+          url: url,
+          quantity: adults,
+        },
+        {
+          id: tour.title + " Child",
+          name: tour.title + " Child ",
+          price: tour.childPrice,
+          url: url,
+          quantity: children,
+        }
+      );
     } catch (error) {
       console.log(error);
     }
