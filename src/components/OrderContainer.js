@@ -103,13 +103,14 @@ const OrderContainer = ({ tour, url }) => {
         window.Snipcart.api.cart.items.add({
           id: tour.id,
           name: tour.title + " for Children (0-14)",
-          price: tour.childPrice,
+          price: tour.price,
           url: url,
           quantity: children,
           customFields: [
             {
-              name: "Type",
-              options: "Adult | Child [-20]",
+              name: "Ticket Type",
+              type: "dropdown",
+              options: "Child[-10]|Adult",
               value: "Child",
             },
           ],
@@ -126,8 +127,9 @@ const OrderContainer = ({ tour, url }) => {
           quantity: adults,
           customFields: [
             {
-              name: "Type",
-              options: "Adult | Child [-20]",
+              name: "Ticket Type",
+              type: "dropdown",
+              options: "Child[-10]|Adult",
               value: "Adult",
             },
           ],
@@ -143,13 +145,7 @@ const OrderContainer = ({ tour, url }) => {
           price: price,
           url: url,
           quantity: adults,
-          customFields: [
-            {
-              name: "Type",
-              options: "Adult | Child [-20]",
-              value: "Adult",
-            },
-          ],
+          customFields: [],
         });
       } catch (error) {
         console.log(error);
