@@ -6,12 +6,14 @@ import { BsPerson } from "react-icons/bs";
 import PartecipantCounter from "./PartecipantCounter";
 import Test from "./test";
 import QRCode from "qrcode.react";
+
 import {
   Price,
   OrderWrapper,
   PartecipantsWrapper,
   PartecipantSpenWrap,
   PartecipantFloating,
+  BookBtn,
 } from "../styles/Order";
 import CustomerInfo from "./CustomerInfo";
 import QrCodeComponent from "./qrcode";
@@ -96,53 +98,71 @@ const OrderContainer = ({ tour, url }) => {
       );
     }
   }
-
+  const addProductbyJs = () => {
+    try {
+      window.Snipcart.api.cart.items.add({
+        id: tour.id,
+        name: tour.title,
+        price: price,
+        url: url,
+        quantity: 1,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <OrderWrapper>
-      <Price>{tour.price}€ per Person</Price>
-      <Price>{price}€ Total</Price>
-      <PartecipantsWrapper onClick={() => setVisible(!visible)}>
-        <BsPerson size={25} />
-        <PartecipantSpenWrap>
-          <span style={{ fontSize: ".75rem" }}>Partecipants</span>
-          <span>{Partecipants}</span>
-        </PartecipantSpenWrap>
-      </PartecipantsWrapper>
-      <PartecipantFloating visible={visible}>
-        <PartecipantCounter
-          persons={adults}
-          incrementCounter={() => incrementCounter(adults, setAdults, "Adults")}
-          decreaseCounter={() => decreaseCounter(adults, setAdults, "Adults")}
-          personType="Adults"
+    <>
+      {document.addEventListener("snipcart.ready", () => {})}
+      <OrderWrapper>
+        <Price>{tour.price}€ per Person</Price>
+        <Price>{price}€ Total</Price>
+        <PartecipantsWrapper onClick={() => setVisible(!visible)}>
+          <BsPerson size={25} />
+          <PartecipantSpenWrap>
+            <span style={{ fontSize: ".75rem" }}>Partecipants</span>
+            <span>{Partecipants}</span>
+          </PartecipantSpenWrap>
+        </PartecipantsWrapper>
+        <PartecipantFloating visible={visible}>
+          <PartecipantCounter
+            persons={adults}
+            incrementCounter={() =>
+              incrementCounter(adults, setAdults, "Adults")
+            }
+            decreaseCounter={() => decreaseCounter(adults, setAdults, "Adults")}
+            personType="Adults"
+          />
+          <PartecipantCounter
+            persons={children}
+            incrementCounter={() =>
+              incrementCounter(children, setChildren, "Children")
+            }
+            decreaseCounter={() =>
+              decreaseCounter(children, setChildren, "Children")
+            }
+            personType="Children"
+          />
+          <button
+            style={{ color: "#0066ff", fontSize: "18px", marginTop: "12px" }}
+            onClick={() => {
+              setVisible(false);
+            }}
+          >
+            Done
+          </button>
+        </PartecipantFloating>
+        <QrCodeComponent
+          tourName={tour.title}
+          ticketPrice={price}
+          uniqueId={"tbd"}
+          elementId={"qrcode"}
+          partecipants={Partecipants}
         />
-        <PartecipantCounter
-          persons={children}
-          incrementCounter={() =>
-            incrementCounter(children, setChildren, "Children")
-          }
-          decreaseCounter={() =>
-            decreaseCounter(children, setChildren, "Children")
-          }
-          personType="Children"
-        />
-        <button
-          style={{ color: "#0066ff", fontSize: "18px", marginTop: "12px" }}
-          onClick={() => {
-            setVisible(false);
-          }}
-        >
-          Done
-        </button>
-      </PartecipantFloating>
-      <QrCodeComponent
-        tourName={tour.title}
-        ticketPrice={price}
-        uniqueId={"tbd"}
-        elementId={"qrcode"}
-        partecipants={Partecipants}
-      />
-      <CheckForOrder />
-    </OrderWrapper>
+        {/* <CheckForOrder /> */}
+        <BookBtn onClick={addProductbyJs}>add by js</BookBtn>
+      </OrderWrapper>
+    </>
   );
 };
 
