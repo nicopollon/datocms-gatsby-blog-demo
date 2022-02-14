@@ -71,6 +71,98 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
     setQrCodeUrl(pngUrl);
     setOpen(false);
   };
+
+  const addToursbyJs = (adultQuantity, childQuantity) => {
+    var AdultTicket = {
+      id: tour.id,
+      name: tour.title,
+      price: tour.price,
+      url: url,
+      quantity: adultQuantity,
+      customFields: [
+        {
+          name: "Ticket Type",
+          type: "dropdown",
+          options: "Adult|Child[-10.00]",
+          value: "Adult",
+        },
+      ],
+    };
+    var ChildTicket = {
+      id: tour.id,
+      name: tour.title,
+      price: tour.price,
+      url: url,
+      quantity: childQuantity,
+      customFields: [
+        {
+          name: "Ticket Type",
+          type: "dropdown",
+          options: "Adult|Child[-10.00]",
+          value: "Child",
+        },
+      ],
+    };
+
+    if (children > 0) {
+      try {
+        window.Snipcart.api.cart.items.add(
+          {
+            id: tour.id,
+            name: tour.title,
+            price: tour.price,
+            url: url,
+            quantity: adultQuantity,
+            customFields: [
+              {
+                name: "Ticket Type",
+                type: "dropdown",
+                options: "Adult|Child[-10.00]",
+                value: "Adult",
+              },
+            ],
+          },
+          {
+            id: tour.id,
+            name: tour.title,
+            price: tour.price,
+            url: url,
+            quantity: childQuantity,
+            customFields: [
+              {
+                name: "Ticket Type",
+                type: "dropdown",
+                options: "Adult|Child[-10.00]",
+                value: "Child",
+              },
+            ],
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        window.Snipcart.api.cart.items.add({
+          id: tour.id,
+          name: tour.title,
+          price: tour.price,
+          url: url,
+          quantity: adultQuantity,
+          customFields: [
+            {
+              name: "Ticket Type",
+              type: "dropdown",
+              options: "Adult|Child[-10.00]",
+              value: "Adult",
+            },
+          ],
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <BookModal open={open}>
       <Details>
@@ -135,6 +227,9 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
           </PriceCalc>
           <Price>Total Price: {price}€</Price>
           {qrCodeUrl}
+          <button onClick={() => addToursbyJs(adults, children)}>
+            add by js
+          </button>
           <OrderButton
             onClick={downloadQR}
             tour={tour}

@@ -97,6 +97,98 @@ const OrderContainer = ({ tour, url }) => {
       );
     }
   }
+
+  const addToursbyJs = (adultQuantity, childQuantity) => {
+    var AdultTicket = {
+      id: tour.id,
+      name: tour.title,
+      price: tour.price,
+      url: url,
+      quantity: adultQuantity,
+      customFields: [
+        {
+          name: "Ticket Type",
+          type: "dropdown",
+          options: "Adult|Child[-10.00]",
+          value: "Adult",
+        },
+      ],
+    };
+    var ChildTicket = {
+      id: tour.id,
+      name: tour.title,
+      price: tour.price,
+      url: url,
+      quantity: childQuantity,
+      customFields: [
+        {
+          name: "Ticket Type",
+          type: "dropdown",
+          options: "Adult|Child[-10.00]",
+          value: "Child",
+        },
+      ],
+    };
+
+    if (children > 0) {
+      try {
+        window.Snipcart.api.cart.items.add(
+          {
+            id: tour.id,
+            name: tour.title,
+            price: tour.price,
+            url: url,
+            quantity: adultQuantity,
+            customFields: [
+              {
+                name: "Ticket Type",
+                type: "dropdown",
+                options: "Adult|Child[-10.00]",
+                value: "Adult",
+              },
+            ],
+          },
+          {
+            id: tour.id,
+            name: tour.title,
+            price: tour.price,
+            url: url,
+            quantity: childQuantity,
+            customFields: [
+              {
+                name: "Ticket Type",
+                type: "dropdown",
+                options: "Adult|Child[-10.00]",
+                value: "Child",
+              },
+            ],
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        window.Snipcart.api.cart.items.add({
+          id: tour.id,
+          name: tour.title,
+          price: tour.price,
+          url: url,
+          quantity: adultQuantity,
+          customFields: [
+            {
+              name: "Ticket Type",
+              type: "dropdown",
+              options: "Adult|Child[-10.00]",
+              value: "Adult",
+            },
+          ],
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   const addProductbyJs = () => {
     if (children > 0) {
       try {
@@ -218,7 +310,9 @@ const OrderContainer = ({ tour, url }) => {
         </OrderButton>
         <CheckForOrder />
 
-        <button onClick={addProductbyJs}>add by js</button>
+        <button onClick={() => addToursbyJs(adults, children)}>
+          add by js
+        </button>
       </OrderWrapper>
     </>
   );
