@@ -110,7 +110,7 @@ const OrderContainer = ({ tour, url }) => {
             {
               name: "Ticket Type",
               type: "dropdown",
-              options: "Adult|Child[-10]",
+              options: "Adult|Child[-10.00]",
               value: "Child",
             },
           ],
