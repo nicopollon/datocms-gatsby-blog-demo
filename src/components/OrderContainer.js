@@ -158,7 +158,6 @@ const OrderContainer = ({ tour, url }) => {
   };
   return (
     <>
-      {document.addEventListener("snipcart.ready", () => {})}
       <OrderWrapper>
         <Price>{tour.price}€ per Person</Price>
         <Price>{price}€ Total</Price>
