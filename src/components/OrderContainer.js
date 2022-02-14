@@ -15,6 +15,7 @@ import {
 } from "../styles/Order";
 import CustomerInfo from "./CustomerInfo";
 import QrCodeComponent from "./qrcode";
+import CheckOrder from "./checkOrder";
 
 const OrderContainer = ({ tour, url }) => {
   const [adults, setAdults] = useState(1);
@@ -26,6 +27,7 @@ const OrderContainer = ({ tour, url }) => {
   const [price, setPrice] = useState(tour.price);
   const [children, setChildren] = useState(0);
   const [qrCodeUrl, setQrCodeUrl] = useState("");
+  const [ticketValidity, checkTicket] = useState(false);
 
   const incrementCounter = (person, setPersons, personType) => {
     const personInt = parseInt(person);
@@ -78,6 +80,23 @@ const OrderContainer = ({ tour, url }) => {
     setQrCodeUrl(pngUrl);
   };
 
+  function CheckForOrder() {
+    if (ticketValidity == false) {
+      return <CheckOrder onClick={() => checkTicket(true)} />;
+    } else {
+      return (
+        <OrderButton
+          tour={tour}
+          partecipants={Partecipants}
+          price={price}
+          qrcode={qrCodeUrl}
+          onClick={downloadQR}
+          itemURL={url}
+        />
+      );
+    }
+  }
+
   return (
     <OrderWrapper>
       <Price>{tour.price}€ per Person</Price>
@@ -122,14 +141,7 @@ const OrderContainer = ({ tour, url }) => {
         elementId={"qrcode"}
         partecipants={Partecipants}
       />
-      <OrderButton
-        onClick={downloadQR}
-        tour={tour}
-        price={price}
-        partecipants={Partecipants}
-        qrcode={qrCodeUrl}
-        itemURL={url}
-      />
+      <CheckForOrder />
     </OrderWrapper>
   );
 };

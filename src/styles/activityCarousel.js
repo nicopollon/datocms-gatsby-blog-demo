@@ -10,6 +10,7 @@ export const ActivityCardWrapper = styled.div`
 `;
 export const ActivityCardContainer = styled.div`
   background: #fff;
+  max-width: 300px;
   width: 100%;
   height: 100%;
   border-radius: 4px;

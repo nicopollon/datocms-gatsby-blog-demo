@@ -8,6 +8,7 @@ export default function OrderButton({
   onClick,
   itemURL,
 }) {
+  const childprice = 20;
   return (
     <BookBtn
       onClick={onClick}
@@ -17,19 +18,15 @@ export default function OrderButton({
       data-item-name={tour.title}
       data-item-url={itemURL}
       data-item-image={tour.coverImage.gatsbyImageData}
+      data-item-stackable="never"
       data-item-custom1-name="Ticket Type"
       data-item-custom1-type="readonly"
       data-item-custom1-value={partecipants}
-      data-item-stackable="never"
-      data-item-custom2-name="First Name"
-      data-item-custom2-value=""
-      data-item-custom2-required="true"
-      data-item-custom3-name="Surname"
-      data-item-custom3-value=""
-      data-item-custom3-required="true"
-      data-item-custom4-name="qrCode"
-      data-item-custom4-type="hidden"
-      data-item-custom4-value={qrcode}
+      data-item-custom2-name="qrCode"
+      data-item-custom2-type="hidden"
+      data-item-custom2-value={qrcode}
+      data-item-custom3-name="Ticket Type"
+      data-item-custom3-options={`Adult | Child [${-childprice}]`}
     >
       Book Now
     </BookBtn>
