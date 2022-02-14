@@ -19,7 +19,7 @@ export default function OrderButton({
       data-item-url={itemURL}
       data-item-image={tour.coverImage.gatsbyImageData}
       data-item-stackable="never"
-      data-item-custom1-name="Ticket Type"
+      data-item-custom1-name="Partecipants"
       data-item-custom1-type="readonly"
       data-item-custom1-value={partecipants}
       data-item-custom2-name="qrCode"
@@ -27,6 +27,7 @@ export default function OrderButton({
       data-item-custom2-value={qrcode}
       data-item-custom3-name="Ticket Type"
       data-item-custom3-options={`Adult | Child [${-childprice}]`}
+      data-item-custom3-value="Child"
     >
       Book Now
     </BookBtn>

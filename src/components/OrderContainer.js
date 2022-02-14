@@ -13,7 +13,6 @@ import {
   PartecipantsWrapper,
   PartecipantSpenWrap,
   PartecipantFloating,
-  BookBtn,
 } from "../styles/Order";
 import CustomerInfo from "./CustomerInfo";
 import QrCodeComponent from "./qrcode";
@@ -99,29 +98,67 @@ const OrderContainer = ({ tour, url }) => {
     }
   }
   const addProductbyJs = () => {
-    try {
-      window.Snipcart.api.cart.items.add(
-        {
-          id: tour.title + "Adult",
+    if (children > 0) {
+      try {
+        window.Snipcart.api.cart.items.add({
+          id: tour.id,
+          name: tour.title + " for Children (0-14)",
+          price: tour.childPrice,
+          url: url,
+          quantity: children,
+          customFields: [
+            {
+              name: "Type",
+              options: "Adult | Child [-20]",
+              value: "Child",
+            },
+          ],
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        window.Snipcart.api.cart.items.add({
+          id: tour.id,
           name: tour.title,
           price: tour.price,
           url: url,
           quantity: adults,
-        },
-        {
-          id: tour.title + " Child",
-          name: tour.title + " Child ",
-          price: tour.childPrice,
+          customFields: [
+            {
+              name: "Type",
+              options: "Adult | Child [-20]",
+              value: "Adult",
+            },
+          ],
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        window.Snipcart.api.cart.items.add({
+          id: tour.id,
+          name: tour.title,
+          price: price,
           url: url,
-          quantity: children,
-        }
-      );
-    } catch (error) {
-      console.log(error);
+          quantity: adults,
+          customFields: [
+            {
+              name: "Type",
+              options: "Adult | Child [-20]",
+              value: "Adult",
+            },
+          ],
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (
     <>
+      {document.addEventListener("snipcart.ready", () => {})}
       <OrderWrapper>
         <Price>{tour.price}€ per Person</Price>
         <Price>{price}€ Total</Price>
@@ -167,8 +204,19 @@ const OrderContainer = ({ tour, url }) => {
           elementId={"qrcode"}
           partecipants={Partecipants}
         />
-        {/* <CheckForOrder /> */}
-        <BookBtn onClick={addProductbyJs}>add by js</BookBtn>
+        <OrderButton
+          tour={tour}
+          partecipants={Partecipants}
+          price={price}
+          qrcode={qrCodeUrl}
+          onClick={downloadQR}
+          itemURL={url}
+        >
+          Order Now
+        </OrderButton>
+        <CheckForOrder />
+
+        <button onClick={addProductbyJs}>add by js</button>
       </OrderWrapper>
     </>
   );
