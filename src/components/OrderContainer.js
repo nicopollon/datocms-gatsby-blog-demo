@@ -137,7 +137,6 @@ const OrderContainer = ({ tour, url }) => {
             id: tour.id + "-children",
             name: tour.title + "For Children (0-14)",
             price: tour.childPrice,
-            url: url,
             quantity: childQuantity,
             stackable: "never",
             customFields: [
@@ -154,7 +153,6 @@ const OrderContainer = ({ tour, url }) => {
             name: tour.title,
             price: tour.price,
             quantity: adultQuantity,
-            url: url,
             stackable: "never",
             customFields: [
               {
