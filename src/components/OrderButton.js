@@ -8,7 +8,6 @@ export default function OrderButton({
   onClick,
   itemURL,
 }) {
-  const childprice = 20;
   return (
     <BookBtn
       onClick={onClick}
@@ -25,9 +24,6 @@ export default function OrderButton({
       data-item-custom2-name="qrCode"
       data-item-custom2-type="hidden"
       data-item-custom2-value={qrcode}
-      data-item-custom3-name="Ticket Type"
-      data-item-custom3-options={`Adult | Child [${-childprice}]`}
-      data-item-custom3-value="Child"
     >
       Book Now
     </BookBtn>

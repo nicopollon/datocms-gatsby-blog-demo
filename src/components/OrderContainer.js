@@ -17,6 +17,7 @@ import {
 import CustomerInfo from "./CustomerInfo";
 import QrCodeComponent from "./qrcode";
 import CheckOrder from "./checkOrder";
+import { onClientEntry } from "../../gatsby-browser";
 
 const OrderContainer = ({ tour, url }) => {
   const [adults, setAdults] = useState(1);
@@ -99,95 +100,47 @@ const OrderContainer = ({ tour, url }) => {
   }
 
   const addToursbyJs = (adultQuantity, childQuantity) => {
-    var AdultTicket = {
-      id: tour.id,
-      name: tour.title,
-      price: tour.price,
-      url: url,
-      quantity: adultQuantity,
-      customFields: [
-        {
-          name: "Ticket Type",
-          type: "dropdown",
-          options: "Adult|Child[-10.00]",
-          value: "Adult",
-        },
-      ],
-    };
-    var ChildTicket = {
-      id: tour.id,
-      name: tour.title,
-      price: tour.price,
-      url: url,
-      quantity: childQuantity,
-      customFields: [
-        {
-          name: "Ticket Type",
-          type: "dropdown",
-          options: "Adult|Child[-10.00]",
-          value: "Child",
-        },
-      ],
-    };
-
     if (children > 0) {
-      try {
-        window.Snipcart.api.cart.items.add(
-          {
-            id: tour.id + "-children",
-            name: tour.title + "For Children (0-14)",
-            price: tour.childPrice,
-            quantity: childQuantity,
-            stackable: "never",
-            customFields: [
-              {
-                name: "Ticket Type",
-                type: "readonly" /* 
-              options: "Adult|Child[-10.00]", */,
-                value: "Child",
-              },
-            ],
-          },
-          {
-            id: tour.id,
-            name: tour.title,
-            price: tour.price,
-            quantity: adultQuantity,
-            stackable: "never",
-            customFields: [
-              {
-                name: "Ticket Type",
-                type: "readonly" /* 
-              options: "Adult|Child[-10.00]", */,
-                value: "Adult",
-              },
-            ],
-          }
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      try {
-        window.Snipcart.api.cart.items.add({
-          id: tour.id,
-          name: tour.title,
-          price: tour.price,
-          quantity: adultQuantity,
-          url: url,
-          stackable: "never",
-          customFields: [
+      document.addEventListener("snipcart.ready", () => {
+        try {
+          window.Snipcart.api.cart.items.add(
             {
-              name: "Ticket Type",
-              type: "dropdown",
-              options: "Adult|Child[-10.00]",
-              value: "Adult",
+              id: tour.id + "-children",
+              name: tour.title + "For Children (0-14)",
+              price: tour.childPrice,
+              url: url,
+              quantity: childQuantity,
+              stackable: "never",
+              customFields: [
+                {
+                  name: "Ticket Type",
+                  type: "readonly" /* 
+                options: "Adult|Child[-10.00]", */,
+                  value: "Child",
+                },
+              ],
             },
-          ],
-        });
-      } catch (error) {
-        console.log(error);
-      }
+            {
+              id: tour.id,
+              name: tour.title,
+              price: tour.price,
+              quantity: adultQuantity,
+              url: url,
+              stackable: "never",
+              customFields: [
+                {
+                  name: "Ticket Type",
+                  type: "readonly" /* 
+                options: "Adult|Child[-10.00]", */,
+                  value: "Adult",
+                },
+              ],
+            }
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      });
     }
   };
   const addProductbyJs = () => {
@@ -301,16 +254,7 @@ const OrderContainer = ({ tour, url }) => {
           elementId={"qrcode"}
           partecipants={Partecipants}
         />
-        <OrderButton
-          tour={tour}
-          partecipants={Partecipants}
-          price={price}
-          qrcode={qrCodeUrl}
-          onClick={downloadQR}
-          itemURL={url}
-        >
-          Order Now
-        </OrderButton>
+
         <CheckForOrder />
 
         <button onClick={() => addToursbyJs(adults, children)}>
