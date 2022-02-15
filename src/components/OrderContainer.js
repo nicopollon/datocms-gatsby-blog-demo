@@ -130,67 +130,66 @@ const OrderContainer = ({ tour, url }) => {
       ],
     };
 
-    if (typeof document !== `undefined`) {
-      document.addEventListener("snipcart.ready", () => {
-        if (children > 0) {
-          try {
-            window.Snipcart.api.cart.items.add(
+    if (children > 0) {
+      try {
+        window.Snipcart.api.cart.items.add(
+          {
+            id: tour.id + "-children",
+            name: tour.title + "For Children (0-14)",
+            price: tour.childPrice,
+            url: url,
+            quantity: childQuantity,
+            stackable: "never",
+            customFields: [
               {
-                id: tour.id + "-children",
-                name: tour.title + "For Children (0-14)",
-                price: tour.childPrice,
-                url: url,
-                stackable: "never",
-                customFields: [
-                  {
-                    name: "Ticket Type",
-                    type: "readonly" /* 
+                name: "Ticket Type",
+                type: "readonly" /* 
               options: "Adult|Child[-10.00]", */,
-                    value: "Child",
-                  },
-                ],
+                value: "Child",
               },
+            ],
+          },
+          {
+            id: tour.id,
+            name: tour.title,
+            price: tour.price,
+            quantity: adultQuantity,
+            url: url,
+            stackable: "never",
+            customFields: [
               {
-                id: tour.id,
-                name: tour.title,
-                price: tour.price,
-                url: url,
-                stackable: "never",
-                customFields: [
-                  {
-                    name: "Ticket Type",
-                    type: "readonly" /* 
+                name: "Ticket Type",
+                type: "readonly" /* 
               options: "Adult|Child[-10.00]", */,
-                    value: "Adult",
-                  },
-                ],
-              }
-            );
-          } catch (error) {
-            console.log(error);
+                value: "Adult",
+              },
+            ],
           }
-        } else {
-          try {
-            window.Snipcart.api.cart.items.add({
-              id: tour.id,
-              name: tour.title,
-              price: tour.price,
-              url: url,
-              stackable: "never",
-              customFields: [
-                {
-                  name: "Ticket Type",
-                  type: "dropdown",
-                  options: "Adult|Child[-10.00]",
-                  value: "Adult",
-                },
-              ],
-            });
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      });
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        window.Snipcart.api.cart.items.add({
+          id: tour.id,
+          name: tour.title,
+          price: tour.price,
+          quantity: adultQuantity,
+          url: url,
+          stackable: "never",
+          customFields: [
+            {
+              name: "Ticket Type",
+              type: "dropdown",
+              options: "Adult|Child[-10.00]",
+              value: "Adult",
+            },
+          ],
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const addProductbyJs = () => {

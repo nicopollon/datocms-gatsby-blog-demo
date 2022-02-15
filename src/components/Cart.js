@@ -14,8 +14,8 @@ const CartIcon = () => {
       <button className="snipcart-checkout">
         <AiOutlineShopping size={35}></AiOutlineShopping>{" "}
       </button>
-      <span class="snipcart-items-count"></span>
-      <span class="snipcart-total-price"></span>
+      <span className="snipcart-items-count"></span>
+      <span className="snipcart-total-price"></span>
     </CartWrapper>
   );
 };
