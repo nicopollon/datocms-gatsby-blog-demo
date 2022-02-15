@@ -80,6 +80,7 @@ const OrderContainer = ({ tour, url }) => {
       .replace("image/png", "image/octet-stream");
     console.log(pngUrl);
     setQrCodeUrl(pngUrl);
+    checkTicket(false);
   };
 
   function CheckForOrder() {
@@ -99,49 +100,52 @@ const OrderContainer = ({ tour, url }) => {
     }
   }
 
+  const createTourJson = () => {};
+
   const addToursbyJs = (adultQuantity, childQuantity) => {
-    if (children > 0) {
-      document.addEventListener("snipcart.ready", () => {
-        try {
-          window.Snipcart.api.cart.items.add(
-            {
-              id: tour.id + "-children",
-              name: tour.title + "For Children (0-14)",
-              price: tour.childPrice,
-              url: url,
-              quantity: childQuantity,
-              stackable: "never",
-              customFields: [
-                {
-                  name: "Ticket Type",
-                  type: "readonly" /* 
-                options: "Adult|Child[-10.00]", */,
-                  value: "Child",
-                },
-              ],
-            },
-            {
-              id: tour.id,
-              name: tour.title,
-              price: tour.price,
-              quantity: adultQuantity,
-              url: url,
-              stackable: "never",
-              customFields: [
-                {
-                  name: "Ticket Type",
-                  type: "readonly" /* 
-                options: "Adult|Child[-10.00]", */,
-                  value: "Adult",
-                },
-              ],
-            }
-          );
-        } catch (error) {
-          console.log(error);
-        }
-      });
-    }
+    console.log("entry");
+    onClientEntry(() => {
+      console.log("entry");
+      try {
+        console.log("adding");
+        window.Snipcart.api.cart.items.add(
+          {
+            id: tour.id + "-children",
+            name: tour.title + "For Children (0-14)",
+            price: tour.childPrice,
+            url: url,
+            quantity: childQuantity,
+            stackable: "never",
+            customFields: [
+              {
+                name: "Ticket Type",
+                type: "readonly",
+                options: "Adult|Child[-10.00]",
+                value: "Child",
+              },
+            ],
+          },
+          {
+            id: tour.id,
+            name: tour.title,
+            price: tour.price,
+            quantity: adultQuantity,
+            url: url,
+            stackable: "never",
+            customFields: [
+              {
+                name: "Ticket Type",
+                type: "readonly",
+                options: "Adult|Child[-10.00]",
+                value: "Adult",
+              },
+            ],
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    });
   };
   const addProductbyJs = () => {
     if (children > 0) {
@@ -257,9 +261,9 @@ const OrderContainer = ({ tour, url }) => {
 
         <CheckForOrder />
 
-        <button onClick={() => addToursbyJs(adults, children)}>
+        {/* <button onClick={() => addToursbyJs(adults, children)}>
           add by js
-        </button>
+        </button> */}
       </OrderWrapper>
     </>
   );
