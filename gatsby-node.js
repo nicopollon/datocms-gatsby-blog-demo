@@ -36,7 +36,7 @@ exports.onPostBuild = ({ graphql }) => {
           id: tour.id,
         },
         {
-          title: tour.title + "child",
+          title: tour.title + " for Child (0 - 15)",
           price: tour.childPrice,
           slug: tour.slug,
           id: tour.id + "child",

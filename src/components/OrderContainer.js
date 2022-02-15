@@ -101,12 +101,15 @@ const OrderContainer = ({ tour, url }) => {
                 url: `/toursJson/${slug}.json`,
                 price: data[0].price,
                 qrcode: qrCodeUrl,
+                quantity: adults,
               },
               {
                 id: data[1].id,
                 name: data[1].title,
                 url: `/toursJson/${slug}.json`,
                 price: data[1].price,
+
+                quantity: children,
               }
             );
           } catch (error) {
@@ -120,6 +123,8 @@ const OrderContainer = ({ tour, url }) => {
               url: `/toursJson/${slug}.json`,
               price: data[0].price,
               qrcode: qrCodeUrl,
+
+              quantity: adults,
             });
           } catch (error) {
             console.log(error);
