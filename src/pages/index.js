@@ -25,13 +25,6 @@ export default function Index({
     sorrentoTours,
   },
 }) {
-  const getJsonTours = () => {
-    fetch("toursJson/capri-boat-tour.json")
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(JSON.stringify(data));
-      });
-  };
   return (
     <>
       <Container>
@@ -54,7 +47,7 @@ export default function Index({
           </HeroContent>
         </HeroContentWrapper>
       </HeroCover>
-      <button onClick={getJsonTours}>FIND THE TOUR</button>
+
       <Container>
         <SliderComponent activities={allTours} title={"Top Tours"} />
         <SliderComponent activities={vesuviusTours} title={"Vesuvius Area"} />

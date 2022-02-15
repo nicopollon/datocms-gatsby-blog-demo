@@ -13,6 +13,7 @@ import {
   PartecipantsWrapper,
   PartecipantSpenWrap,
   PartecipantFloating,
+  BookBtn,
 } from "../styles/Order";
 import CustomerInfo from "./CustomerInfo";
 import QrCodeComponent from "./qrcode";
@@ -82,27 +83,13 @@ const OrderContainer = ({ tour, url }) => {
     checkTicket(false);
   };
 
-  function CheckForOrder() {
-    if (ticketValidity == false) {
-      return <CheckOrder onClick={() => checkTicket(true)} />;
-    } else {
-      return (
-        <OrderButton
-          tour={tour}
-          partecipants={Partecipants}
-          price={price}
-          qrcode={qrCodeUrl}
-          onClick={downloadQR}
-          itemURL={url}
-        />
-      );
-    }
-  }
   function fetchJsonProduct(slug) {
     console.log(slug);
+
     fetch(`../../toursJson/${slug}.json`)
       .then((r) => r.json())
       .then((data) => {
+        downloadQR();
         console.log(JSON.stringify(data));
 
         if (children > 0) {
@@ -113,6 +100,7 @@ const OrderContainer = ({ tour, url }) => {
                 name: data[0].title,
                 url: `/toursJson/${slug}.json`,
                 price: data[0].price,
+                qrcode: qrCodeUrl,
               },
               {
                 id: data[1].id,
@@ -131,6 +119,7 @@ const OrderContainer = ({ tour, url }) => {
               name: data[0].title,
               url: `/toursJson/${slug}.json`,
               price: data[0].price,
+              qrcode: qrCodeUrl,
             });
           } catch (error) {
             console.log(error);
@@ -142,7 +131,6 @@ const OrderContainer = ({ tour, url }) => {
     <>
       <OrderWrapper>
         <Price>{tour.price}€ per Person</Price>
-        <Price>{price}€ Total</Price>
         <PartecipantsWrapper onClick={() => setVisible(!visible)}>
           <BsPerson size={25} />
           <PartecipantSpenWrap>
@@ -185,12 +173,10 @@ const OrderContainer = ({ tour, url }) => {
           elementId={"qrcode"}
           partecipants={Partecipants}
         />
-
-        <CheckForOrder />
-        <button onClick={() => fetchJsonProduct(tour.slug)}>FETCH ME</button>
-        {/* <button onClick={() => addToursbyJs(adults, children)}>
-          add by js
-        </button> */}
+        <Price>Total {price}€</Price>
+        <BookBtn onClick={() => fetchJsonProduct(tour.slug)}>
+          Order now{" "}
+        </BookBtn>
       </OrderWrapper>
     </>
   );

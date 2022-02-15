@@ -71,98 +71,49 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
     setQrCodeUrl(pngUrl);
     setOpen(false);
   };
+  function fetchJsonProduct(slug) {
+    console.log(slug);
+    fetch(`../../toursJson/${slug}.json`)
+      .then((r) => r.json())
+      .then((data) => {
+        downloadQR();
+        console.log(JSON.stringify(data));
 
-  const addToursbyJs = (adultQuantity, childQuantity) => {
-    var AdultTicket = {
-      id: tour.id,
-      name: tour.title,
-      price: tour.price,
-      url: url,
-      quantity: adultQuantity,
-      customFields: [
-        {
-          name: "Ticket Type",
-          type: "dropdown",
-          options: "Adult|Child[-10.00]",
-          value: "Adult",
-        },
-      ],
-    };
-    var ChildTicket = {
-      id: tour.id,
-      name: tour.title,
-      price: tour.price,
-      url: url,
-      quantity: childQuantity,
-      customFields: [
-        {
-          name: "Ticket Type",
-          type: "dropdown",
-          options: "Adult|Child[-10.00]",
-          value: "Child",
-        },
-      ],
-    };
-
-    if (children > 0) {
-      try {
-        window.Snipcart.api.cart.items.add(
-          {
-            id: tour.id,
-            name: tour.title,
-            price: tour.price,
-            url: url,
-            quantity: adultQuantity,
-            customFields: [
+        if (children > 0) {
+          try {
+            window.Snipcart.api.cart.items.add(
               {
-                name: "Ticket Type",
-                type: "dropdown",
-                options: "Adult|Child[-10.00]",
-                value: "Adult",
+                id: data[0].id,
+                name: data[0].title,
+                url: `/toursJson/${slug}.json`,
+                price: data[0].price,
+                qrcode: qrCodeUrl,
               },
-            ],
-          },
-          {
-            id: tour.id,
-            name: tour.title,
-            price: tour.price,
-            url: url,
-            quantity: childQuantity,
-            customFields: [
               {
-                name: "Ticket Type",
-                type: "dropdown",
-                options: "Adult|Child[-10.00]",
-                value: "Child",
-              },
-            ],
+                id: data[1].id,
+                name: data[1].title,
+                url: `/toursJson/${slug}.json`,
+                price: data[1].price,
+              }
+            );
+          } catch (error) {
+            console.log(error);
           }
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      try {
-        window.Snipcart.api.cart.items.add({
-          id: tour.id,
-          name: tour.title,
-          price: tour.price,
-          url: url,
-          quantity: adultQuantity,
-          customFields: [
-            {
-              name: "Ticket Type",
-              type: "dropdown",
-              options: "Adult|Child[-10.00]",
-              value: "Adult",
-            },
-          ],
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+        } else {
+          try {
+            window.Snipcart.api.cart.items.add({
+              id: data[0].id,
+              name: data[0].title,
+              url: `/toursJson/${slug}.json`,
+              price: data[0].price,
+              qrcode: qrCodeUrl,
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      });
+  }
   return (
     <BookModal open={open}>
       <Details>
@@ -226,18 +177,10 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
             </p>
           </PriceCalc>
           <Price>Total Price: {price}€</Price>
-          {qrCodeUrl}
-          <button onClick={() => addToursbyJs(adults, children)}>
-            add by js
-          </button>
-          <OrderButton
-            onClick={downloadQR}
-            tour={tour}
-            price={price}
-            partecipants={Partecipants}
-            qrcode={qrCodeUrl}
-            itemURL={url}
-          ></OrderButton>
+
+          <BookBtn onClick={() => fetchJsonProduct(tour.slug)}>
+            Order now{" "}
+          </BookBtn>
         </OrderRecap>
       </Details>
     </BookModal>
