@@ -12,10 +12,8 @@ const Category = ({ title, description, image }) => {
       <GatsbyImage image={image} alt="" style={{ gridArea: "1/1" }} />
       <HeroContentWrapper>
         <HeroContent>
-          <Container>
-            <h1>{title}</h1>
-            <p>{description}</p>
-          </Container>
+          <h1>{title}</h1>
+          <p>{description}</p>
         </HeroContent>
       </HeroContentWrapper>
     </HeroCover>

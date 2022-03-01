@@ -10,7 +10,7 @@ export const ActivityCardWrapper = styled.div`
 `;
 export const ActivityCardContainer = styled.div`
   background: #fff;
-  max-width: 300px;
+  max-width: 425px;
   width: 100%;
   height: 100%;
   border-radius: 4px;
@@ -24,8 +24,8 @@ export const ActivityCardContainer = styled.div`
   position: relative;
 `;
 export const ActivityCardTitle = styled.header`
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 600;
   line-height: 1.25rem;
 `;
 export const ActivityCardPrice = styled.p`

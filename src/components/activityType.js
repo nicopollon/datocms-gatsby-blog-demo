@@ -10,18 +10,15 @@ export const ActivityCardTypes = styled.ul`
   top: ${({ inCarousel }) => (inCarousel ? "-15px" : "0")};
 `;
 export const ActivityCardType = styled.li`
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: capitalize;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
   background-color: ${({ typeColor }) => typeColor || "#242424"};
-  padding: 6px 12px;
-  margin: 0 3px;
+  padding: 3px 6px;
+  width: max-content;
+  margin: 0 6px;
   color: #fff;
-  border-radius: 8px;
-  @media screen and (max-width: 768px) {
-    font-size: 12px;
-    margin: 0;
-  }
+  border-radius: 4px;
 `;
 
 const ActivityType = ({ tourTypes, inCarousel }) => {

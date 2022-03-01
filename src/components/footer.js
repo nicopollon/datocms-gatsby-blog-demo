@@ -1,42 +1,57 @@
 import React from "react";
-
+import { StaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
 import Container from "./container";
+import { FooterContainer, FooterLinks, FooterList } from "../styles/footer";
 
 export default function Footer() {
   return (
-    <>
-      <footer className="bg-accent-1 border-t border-accent-2">
-        <Container>
-          <div className="py-28 flex flex-col lg:flex-row items-center">
-            <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-              Statically Generated with Next.js.
-            </h3>
-            <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-              <a
-                href="https://www.datocms.com/docs/next-js"
-                className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
-              >
-                Read Documentation
-              </a>
-              <a
-                href="https://github.com/datocms/nextjs-demo"
-                className="mx-3 font-bold hover:underline"
-              >
-                View on GitHub
-              </a>
-            </div>
-          </div>
-        </Container>
-      </footer>
-      {/* <script
-        async
-        src="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.js"
-      />
-      <div
-        hidden
-        id="snipcart"
-        data-api-key="YThhODczYjYtYWMzZi00MzExLWFkMDMtNTgxZmMxNjM2YzYxNjM3Nzg2MzE4MTkwNjQxOTUx"
-      /> */}
-    </>
+    <StaticQuery
+      query={graphql`
+        {
+          site {
+            siteMetadata {
+              title
+            }
+          }
+          allDatoCmsCategory {
+            nodes {
+              name
+              slug
+            }
+          }
+        }
+      `}
+      render={(data) => (
+        <footer style={{ minHeight: "40vh", background: "lightblue" }}>
+          <Container>
+            <FooterContainer>
+              <FooterList>
+                <h2>{data.site.siteMetadata.title}</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus mi lectus, vestibulum vel tellus sit amet, porttitor
+                  pharetra urna. Integer ullamcorper sem dui, egestas rhoncus
+                  neque imperdiet vel.
+                </p>
+                <p>Fake street 123, Fake City</p>
+              </FooterList>
+              <FooterList>
+                <h2>Links</h2>
+                <ul>
+                  {data.allDatoCmsCategory.nodes.map((e, index) => (
+                    <FooterLinks>
+                      <Link key={index} to={`/tours/${e.slug}`}>
+                        {e.name}
+                      </Link>
+                    </FooterLinks>
+                  ))}
+                </ul>
+              </FooterList>
+            </FooterContainer>
+          </Container>
+        </footer>
+      )}
+    ></StaticQuery>
   );
 }

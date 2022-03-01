@@ -33,7 +33,14 @@ export const HeroContent = styled.div`
   p {
     font-size: 1.5rem;
   }
-
+  margin: 0 20px;
+  padding: 0 96px;
+  @media screen and (max-width: 1024px) {
+    padding: 0 32px;
+  }
+  @media screen and (max-width: 425px) {
+    padding: 0 16px;
+  }
   @media screen and (max-width: 768px) {
     h1 {
       font-size: 42px;

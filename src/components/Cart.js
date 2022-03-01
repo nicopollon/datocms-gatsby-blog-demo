@@ -7,7 +7,16 @@ const CartWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
+const CartItems = styled.span`
+  border-radius: 50px/50px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background: #e77137;
+  position: relative;
+  right: 10px;
+  top: -10px;
+`;
 const CartIcon = () => {
   return (
     <CartWrapper>
@@ -15,7 +24,6 @@ const CartIcon = () => {
         <AiOutlineShopping size={35}></AiOutlineShopping>{" "}
       </button>
       <span className="snipcart-items-count"></span>
-      <span className="snipcart-total-price"></span>
     </CartWrapper>
   );
 };

@@ -5,12 +5,10 @@ export const TourHeader = styled.div`
   width: 100%;
   align-items: center;
   justify-content: flex-start;
-  padding: 12px 0;
   margin-top: 32px;
   h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 16px;
     flex-basis: fit-content;
     margin-right: 10px;
   }
@@ -19,10 +17,10 @@ export const TourHeader = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-top: 20px;
+    margin: 5px 0;
     h1 {
-      font-size: 1.3rem;
-      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: 00;
       margin-top: 0;
       flex-basis: fit-content;
     }
@@ -53,13 +51,14 @@ export const MobileOrderContainer = styled.div`
 `;
 export const MobileOrderWrapper = styled.div`
   position: sticky;
+  display: none;
   width: 100%;
   bottom: 0;
   height: 80px;
   background-color: #fff;
   border-top: 1px solid #dcdfe4;
-  @media screen and (min-width: 768px) {
-    display: none;
+  @media screen and (max-width: 768px) {
+    display: flex;
   }
 `;
 export const PriceTag = styled.div`

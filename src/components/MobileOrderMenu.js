@@ -2,6 +2,7 @@ import React from "react";
 import {
   BookBtn,
   BookModal,
+  DatePickerWrapper,
   Details,
   OrderRecap,
   PartecipantsMobile,
@@ -10,21 +11,25 @@ import {
   PartecipantsWrapper,
   Price,
   PriceCalc,
+  Calendar,
+  Popper,
 } from "../styles/Order";
-import CustomerInfo from "./CustomerInfo";
 import PartecipantCounter from "./PartecipantCounter";
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
-import OrderButton from "./OrderButton";
 import QrCodeComponent from "./qrcode";
-import { StaticImage } from "gatsby-plugin-image";
+import moment from "moment";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
 const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
   const [adults, setAdults] = useState(1);
   const [Partecipants, setPartecipants] = useState(["Adult: " + adults], [""]);
   const [visible, setVisible] = useState(false);
   const [price, setPrice] = useState(tour.price);
   const [children, setChildren] = useState(0);
+  const [startdate, setStartDate] = useState(moment().toDate());
 
   const [qrCodeUrl, setQrCodeUrl] = useState("");
 
@@ -87,8 +92,21 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
                 name: data[0].title,
                 url: `/toursJson/${slug}.json`,
                 price: data[0].price,
-                qrcode: qrCodeUrl,
+
                 quantity: adults,
+                customFields: [
+                  {
+                    name: "Date",
+                    value:
+                      startdate.getDate() + "/" + (startdate.getMonth() + 1),
+                    type: "readonly",
+                  },
+                  {
+                    name: "QRCODE",
+                    value: qrCodeUrl,
+                    type: "hidden",
+                  },
+                ],
               },
               {
                 id: data[1].id,
@@ -96,6 +114,19 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
                 url: `/toursJson/${slug}.json`,
                 price: data[1].price,
                 quantity: children,
+                customFields: [
+                  {
+                    name: "Date",
+                    value:
+                      startdate.getDate() + "/" + (startdate.getMonth() + 1),
+                    type: "readonly",
+                  },
+                  {
+                    name: "QRCODE",
+                    value: qrCodeUrl,
+                    type: "hidden",
+                  },
+                ],
               }
             );
           } catch (error) {
@@ -110,6 +141,19 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
               price: data[0].price,
               qrcode: qrCodeUrl,
               quantity: adults,
+
+              customFields: [
+                {
+                  name: "Date",
+                  value: startdate.getDate() + "/" + (startdate.getMonth() + 1),
+                  type: "readonly",
+                },
+                {
+                  name: "QRCODE",
+                  value: qrCodeUrl,
+                  type: "hidden",
+                },
+              ],
             });
           } catch (error) {
             console.log(error);
@@ -117,6 +161,7 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
         }
       });
   }
+
   return (
     <BookModal open={open}>
       <Details>
@@ -159,6 +204,12 @@ const MobileOrderMenu = ({ tour, open, setOpen, url }) => {
           <BookBtn onClick={() => setVisible(false)}>Done</BookBtn>
         </PartecipantsMobile>
 
+        <DatePickerWrapper
+          selected={startdate}
+          onChange={(date) => setStartDate(date)}
+          calendarContainer={Calendar}
+          minDate={moment().toDate()}
+        />
         <QrCodeComponent
           tourName={tour.title}
           ticketPrice={price}

@@ -40,10 +40,8 @@ export default function Index({
         />
         <HeroContentWrapper>
           <HeroContent>
-            <Container>
-              <h1>Explore beautiful Campania</h1>
-              <p>Pompeii,Positano and ...</p>
-            </Container>
+            <h1>Explore beautiful Campania</h1>
+            <p>Book your tours here</p>
           </HeroContent>
         </HeroContentWrapper>
       </HeroCover>
@@ -60,9 +58,8 @@ export default function Index({
         <ActivityCarousel activities={capriTours} title={"Capri Tours"} />
         <ActivityCarousel activities={amalfiTours} title={"Amalfi Coast"} />
         <ActivityCarousel activities={sorrentoTours} title={"Sorrento"} />
-
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 }

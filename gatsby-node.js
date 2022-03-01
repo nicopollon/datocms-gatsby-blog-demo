@@ -14,6 +14,7 @@ exports.onPostBuild = ({ graphql }) => {
             price
             id
             childPrice
+            date
           }
         }
       }
@@ -34,12 +35,14 @@ exports.onPostBuild = ({ graphql }) => {
           price: tour.price,
           slug: tour.slug,
           id: tour.id,
+          date: tour.date,
         },
         {
-          title: tour.title + " for Child (0 - 15)",
+          title: tour.title + " " + "for Child (0 - 15)",
           price: tour.childPrice,
           slug: tour.slug,
-          id: tour.id + "child",
+          id: tour.id + " " + "for Child (0 - 15)",
+          date: tour.date,
         },
       ];
       fs.writeFileSync(

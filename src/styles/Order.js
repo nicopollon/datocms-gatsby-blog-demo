@@ -1,5 +1,6 @@
-import styled from "styled-components";
-
+import React from "react";
+import styled, { css, createGlobalStyle } from "styled-components";
+import DatePicker from "react-datepicker";
 export const Price = styled.h3`
   font-weight: 600;
   font-size: 20px;
@@ -10,9 +11,9 @@ export const OrderWrapper = styled.div`
   border: 2px solid #dcdfe4;
   border-radius: 16px;
   position: sticky;
-  top: 0;
+  top: 10px;
   margin: 16px 0;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -156,5 +157,32 @@ export const Input = styled.input`
   :hover {
     border: 3px solid #0066ff;
     background-color: #ebeef1;
+  }
+`;
+export const Calendar = styled.div`
+  border-radius: 12px;
+  border: 3px solid #dcdfe4;
+  width: 100% !important;
+  transition: all 0.2s;
+  cursor: pointer;
+  :hover {
+    border: 3px solid #0066ff;
+    background-color: #ebeef1;
+  }
+`;
+
+export const DatePickerWrapper = styled(({ className, ...props }) => (
+  <DatePicker {...props} wrapperClassName={className} />
+))`
+  width: 100%;
+  margin: 12px 0 !important;
+  border-radius: 12px !important;
+  border: 3px solid #dcdfe4 !important;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  input {
+    width: 100%;
+    padding: 12px;
   }
 `;
